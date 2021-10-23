@@ -84,7 +84,7 @@ public class ATM {
 							//
 							break;
 					}
-				}
+				}else System.out.println("잘못된 아이디나 비밀번호입니다.");
 		}
 
         
