@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ATM {
+public class ATM extends Admin{
     public static void main(String[] args) {
 
         List<User> user = new ArrayList<>();
