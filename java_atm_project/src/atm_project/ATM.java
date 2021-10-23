@@ -11,7 +11,7 @@ public class ATM {
 	
 	protected ArrayList<String> atmPreInfo = new ArrayList<>();		//ATM 거래 이전 정보를 저장
 
-	
+	// 주석
 	
 	protected void transactionReq(){			//거래요청
 		
