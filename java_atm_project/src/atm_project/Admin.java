@@ -13,7 +13,7 @@ public class Admin {
 	protected String getAdminId() { return adminId; }
 
 	protected Admin (String adminId, int adminPWD, String adminName){
-		this.adminName = adminId;
+		this.adminId = adminId;
 		this.adminPWD = adminPWD;
 		this.adminName = adminName;
 	}
