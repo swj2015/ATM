@@ -21,15 +21,7 @@ public class User {
 	protected int getUserIdx() { return userIdx; }
 	protected String getUserTDeposit() { return userTDeposit; }
 	protected String getUserSavings() { return userSavings; }
-//	protected void setUserName(String userName) { this.userName = userName;}
-//	protected void setUserId (String userId) { this.userId = userId; }
-//	protected void setUserPWD (int userPWD) { this.userPWD = userPWD; }
-//	protected void setUserIdx (int userIdx) { this.userIdx = userIdx; }
-//	protected void setUserDW (String userDW) { this.userDW = userDW; }
-//	protected void setUserTDeposit (String userTDeposit) { this.userTDeposit = userTDeposit; }
-//	protected void setUserSavings (String userSavings) { this.userSavings = userSavings; }
 
-	//protected List<User> user = new ArrayList<>();
 
 	protected User(String userName, String userId, int userPWD, int userIdx, String userDW, String userTDeposit, String userSavings){
 		this.userName = userName;

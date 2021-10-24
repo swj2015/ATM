@@ -5,29 +5,14 @@ import java.util.List;
 
 public class Admin {
 
-	List<Admin> admin;
+	List<AdminInfo> admin;
 	Transaction trans;
 	ATMInfo atmInfo;
-
-	protected String adminId;		//관리자 아이디
-	protected int adminPWD;			//관리자 비밀번호
-	protected String adminName;		//관리자 이름
-
-	protected String getAdminName() { return adminName; }
-	protected int getAdminPWD() { return adminPWD; }
-	protected String getAdminId() { return adminId; }
-
-	protected Admin (String adminId, int adminPWD, String adminName){
-		this.adminId = adminId;
-		this.adminPWD = adminPWD;
-		this.adminName = adminName;
-	}
-
 
 	protected int adminIdentification(String adminId, int adminPWD){ //관리자로그인
 		for(int i=0; i<admin.size() ; i++){
 			if (adminId == admin.get(i).getAdminId() && adminPWD == admin.get(i).getAdminPWD()){
-				System.out.printf("%c 회원이 로그인에 성공했습니다!", adminName);
+				System.out.printf("%c 회원이 로그인에 성공했습니다!", admin.get(i).getAdminName());
 				return 1000;
 			}
 			else {
