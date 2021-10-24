@@ -35,7 +35,7 @@ public class User {
 
 	protected int userIdentification(String userId, int userPWD){			//유저신원조회(로그인 할때)
 		for(int i=0; i<user.size() ; i++){
-			if (userId == user.get(i).getUserId() && userPWD == user.get(i).getUserPWD()){
+			if (userId.equals(user.get(i).getUserId()) && userPWD == user.get(i).getUserPWD()){
 				System.out.printf("%c 회원이 로그인에 성공했습니다!", userName);
 				return 1000;
 			}

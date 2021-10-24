@@ -11,7 +11,7 @@ public class Admin {
 
 	protected int adminIdentification(String adminId, int adminPWD){ //관리자로그인
 		for(int i=0; i<admin.size() ; i++){
-			if (adminId == admin.get(i).getAdminId() && adminPWD == admin.get(i).getAdminPWD()){
+			if (adminId.equals(admin.get(i).getAdminId()) && adminPWD == admin.get(i).getAdminPWD()){
 				System.out.printf("%c 회원이 로그인에 성공했습니다!", admin.get(i).getAdminName());
 				return 1000;
 			}
