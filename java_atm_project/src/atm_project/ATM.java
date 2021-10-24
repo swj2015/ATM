@@ -19,11 +19,13 @@ public class ATM{
         User newUser3 = new User("정수현", "test3", 6631, 3, "999988887777", "666655554444", "333322221111");
         user.add(newUser3);
         
-        Admin newAdmin1 = new Admin("admin1", 1234, "관리자1");
+        Admin newAdmin1 = new Admin("admin1", "관리자1");
         admin.add(newAdmin1);
-
-        Admin newAdmin2 = new Admin("admin2", 5678, "관리자2");
+        Admin.adPwd(1234);
+        
+        Admin newAdmin2 = new Admin("admin2", "관리자2");
         admin.add(newAdmin2);
+        Admin.adPwd(5678);
         
         Account newAcc1 = new Account("성우진", "111122223333", 1250000, 1,1111);
         acc.add(newAcc1);
