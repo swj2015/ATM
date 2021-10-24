@@ -10,33 +10,62 @@ public class Admin {
 	ATMInfo atmInfo;
 
 	protected String adminId;		//관리자 아이디
-	protected int adminPWD;			//관리자 비밀번호
+	static protected int adminPWD;			//관리자 비밀번호
 	protected String adminName;		//관리자 이름
 
-	protected String getAdminName() { return adminName; }
-	protected int getAdminPWD() { return adminPWD; }
-	protected String getAdminId() { return adminId; }
-
-	protected Admin (String adminId, int adminPWD, String adminName){
+	
+	static ArrayList<String> admin = new ArrayList<>();
+	static ArrayList<Integer> adPassword = new ArrayList<>();
+	
+	protected Admin (String adminId, String adminName){
 		this.adminId = adminId;
-		this.adminPWD = adminPWD;
 		this.adminName = adminName;
+		
+		admin.add(adminId);
+		admin.add(adminName);
+		
+		
+	}
+	
+	static protected void adPwd (int AdminPWD) {
+		adminPWD = AdminPWD;
+		adPassword.add(adminPWD);
 	}
 
-
+	String getAdminId(int cnt) {
+		return admin.get(0 + cnt*2);
+	}
+	
+	String getAdminName(int cnt) {
+		return admin.get(1 + cnt*2);
+	}
+	int getAdminPWD(int cnt) {
+		return adPassword.get(cnt);
+	}
+	
 	protected int adminIdentification(String adminId, int adminPWD){ //관리자로그인
-		for(int i=0; i<admin.size() ; i++){
-			if (adminId == admin.get(i).getAdminId() && adminPWD == admin.get(i).getAdminPWD()){
-				System.out.printf("%c 회원이 로그인에 성공했습니다!", adminName);
-				return 1000;
-			}
-			else {
-				System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
-				return 2000;
+		
+		for(int i = 0; i<2; i++) {
+			
+			String name = getAdminName(i);
+			String Id = getAdminId(i);
+			
+			if (adminId.equals(Id)) {
+				if(adminPWD == getAdminPWD(i)){
+					System.out.printf("%s (이)가 로그인에 성공했습니다!\n", name);
+					return 1000;
+				}
+				else continue;
+				
 			}
 		}
-		return 0;
+		
+		System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
+				
+		return 2000;
+		
 	} //1000 : 성공 2000 : 오류
+
 
 	protected int adminBillAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
 		trans.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
