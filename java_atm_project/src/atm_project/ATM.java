@@ -44,24 +44,29 @@ public class ATM{
         Scanner s = new Scanner(System.in);
    
         while(true){
-		System.out.println("관리자는 1번, 고객은 2번을 입력해주세요");
+		System.out.println("> 관리자는 1, 고객은 2를 입력해주세요");
 		int a = s.nextInt();
 	
 		switch(a){
-		case 1:																			//관리자로 로그인
-				System.out.print("관리자 아이디를 입력해주세요\n");
+		case 1:																//관리자로 로그인
 				String ad_id;
+				int ad_PWD;
+				System.out.print("> 관리자 아이디를 입력해주세요\n");
 				ad_id = s.next();
 				
-				System.out.println("비밀번호를 입력해주세요");
-				int ad_PWD;
+				System.out.println("> 비밀번호를 입력해주세요");
 				ad_PWD = s.nextInt();
 				
 				ad.adminIdentification(ad_id,ad_PWD);									//관리자 로그인 성공 실패 메소드
 				
-				System.out.println("1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 exit 합니다.\n");		
-				int n = s.nextInt();
+				if(num == 1000){
+					System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 exit 합니다.\n");		
+				}else if(num == 2000) {
+					// 로그인 실패 시
+					continue;
+				}
 				
+				int n = s.nextInt();
 				
 				
 				switch(n){
