@@ -1,12 +1,17 @@
 package atm_project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
 
 	ATMInfo atmInfo;
-	List<Account> acc;
+	List<AccountInfo> acc;
 	List<Transaction_Log> transLog;
+
+	public Transaction(ArrayList<Transaction_Log> transLog) {
+		this.transLog = transLog;
+	}
 
 	protected void transLogReq(String transAcc, String reqUserName, int transTotal, int transManWon, int trans5ManWon, int transCheonWon, int trans5CheonWon, int accBal){
 		Transaction_Log newTransLog = new Transaction_Log(transAcc, reqUserName, transTotal, transManWon, trans5ManWon, transCheonWon, trans5CheonWon, accBal);

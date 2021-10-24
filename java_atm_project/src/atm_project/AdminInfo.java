@@ -1,5 +1,7 @@
 package atm_project;
 
+import java.util.ArrayList;
+
 class AdminInfo {
     protected String adminId;		//관리자 아이디
     protected int adminPWD;			//관리자 비밀번호

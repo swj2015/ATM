@@ -7,31 +7,12 @@ public class Account {
 
 	Transaction transaction;
 	ATMInfo atmInfo;
-	protected List<Account> acc;
-	protected List<Transaction> trans;
+	ArrayList<AccountInfo> acc;
 
-	protected String accUser;       //계좌소유유저이름
-	protected String accNum;		//계좌번호
-	protected int accBal;			//계좌잔액
-	protected int accType;			//계좌종류 => 1.입출금, 2.정기예금, 3.정기적금
-	protected int accPWD;			//계좌 비밀번호
-
-	protected String getAccUser() { return accUser; }
-	protected String getAccNum() { return  accNum; }
-	protected int getAccBal() { return accBal; }
-	protected int getAccType() { return  accType; }
-	protected int getAccPWD() { return accPWD; }
-	protected void setAccBal(int accBal) { this.accBal = accBal; }
-
-	protected Account(String accUser, String accNum, int accBal, int accType, int accPWD){
-		this.accUser = accUser;
-		this.accNum = accNum;
-		this.accBal = accBal;
-		this.accType = accType;
-		this.accPWD = accPWD;
+	public Account(ArrayList<AccountInfo> acc) {
+		this.acc = acc;
 	}
-	
-	
+
 	protected void depositReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){ //입금요청
 		for (int i=0 ; i<acc.size(); i++){
 			if (accNum == acc.get(i).getAccNum() && accPWD == acc.get(i).getAccPWD()){

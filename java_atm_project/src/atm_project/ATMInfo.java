@@ -9,7 +9,7 @@ class ATMInfo {
     protected int leftCheonWon = 0;            //천원권 남은 장수
     protected int left5CheonWon = 0;            //5천원권 남은 장수
 
-    protected List<String> atmPreInfo = new ArrayList<>();        //ATM 거래 이전 정보를 저장
+    //protected List<String> atmPreInfo = new ArrayList<>();        //ATM 거래 이전 정보를 저장
 
 //    protected void transactionReq() {            //거래요청
 //    } //필요 없을듯...?
