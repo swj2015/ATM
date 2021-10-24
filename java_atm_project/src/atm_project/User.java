@@ -21,38 +21,77 @@ public class User {
 	protected int getUserIdx() { return userIdx; }
 	protected String getUserTDeposit() { return userTDeposit; }
 	protected String getUserSavings() { return userSavings; }
-//	protected void setUserName(String userName) { this.userName = userName;}
-//	protected void setUserId (String userId) { this.userId = userId; }
-//	protected void setUserPWD (int userPWD) { this.userPWD = userPWD; }
-//	protected void setUserIdx (int userIdx) { this.userIdx = userIdx; }
-//	protected void setUserDW (String userDW) { this.userDW = userDW; }
-//	protected void setUserTDeposit (String userTDeposit) { this.userTDeposit = userTDeposit; }
-//	protected void setUserSavings (String userSavings) { this.userSavings = userSavings; }
 
-	//protected List<User> user = new ArrayList<>();
+	static ArrayList<String> userString = new ArrayList<>();
+	static ArrayList<Integer> userInt = new ArrayList<>();
+	
 
-	protected User(String userName, String userId, int userPWD, int userIdx, String userDW, String userTDeposit, String userSavings){
-		this.userName = userName;
-		this.userId = userId;
-		this.userPWD = userPWD;
-		this.userIdx = userIdx;
-		this.userDW = userDW;
-		this.userTDeposit = userTDeposit;
-		this.userSavings = userSavings;
+	protected User(String userName, String userId, String userDW, String userTDeposit, String userSavings){
+//		this.userName = userName;
+//		this.userId = userId;
+//		this.userDW = userDW;
+//		this.userTDeposit = userTDeposit;
+//		this.userSavings = userSavings;
+		
+		userString.add(userName);
+		userString.add(userId);
+		userString.add(userDW);
+		userString.add(userTDeposit);
+		userString.add(userSavings);
+		
+		
 	}
-
+	
+	protected static void UserInteger(int userPWD, int userIdx) {
+		userInt.add(userPWD);
+		userInt.add(userIdx);
+	}
+	
+	String uName(int cnt) {
+		return userString.get(0 + cnt*5);
+	}
+	String uId(int cnt) {
+		return userString.get(1 + cnt*5);
+	}
+	String uDW(int cnt) {
+		return userString.get(2 + cnt*5);
+	}
+	String uTDe(int cnt) {
+		return userString.get(3 + cnt*5);
+	}
+	String uSave(int cnt) {
+		return userString.get(4 + cnt*5);
+	}
+	int uPWD(int cnt) {
+		return userInt.get(0 + cnt*2);
+	}
+	int uIdx(int cnt) {
+		return userInt.get(1 + cnt*2);
+	}
+	
+	
 	protected int userIdentification(String userId, int userPWD){			//유저신원조회(로그인 할때)
-		for(int i=0; i<user.size() ; i++){
-			if (userId == user.get(i).getUserId() && userPWD == user.get(i).getUserPWD()){
-				System.out.printf("%c 회원이 로그인에 성공했습니다!", userName);
-				return 1000;
-			}
-			else {
-				System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
-				return 2000;
+		
+		
+		for(int i = 0; i<3; i++) {
+			
+			//System.out.println(adminId);
+			String name = uName(i);
+			String Id = uId(i);
+			
+			if (userId.equals(Id)) {
+				if(userPWD == uPWD(i)){
+					System.out.printf("%s 회원님이 로그인에 성공했습니다!\n", name);
+					return 1000;
+				}
+				else continue;
+				
 			}
 		}
-		return 0;
+		
+		System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
+				
+		return 2000;
 	} //1000 : 성공 2000 : 오류
 
 	protected void depositSearch(String userId){			//유저 계좌 조회 -> 가지고 있는 전체 계좌를 보여줌. 로그인 한 상태이고 무조건 1개 이상의 계좌가 있다고 가정. 오류처리 안함
