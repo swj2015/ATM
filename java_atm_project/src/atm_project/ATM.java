@@ -8,23 +8,19 @@ public class ATM{
     public static void main(String[] args) {
     	
     	
-    	List<Admin> admin = new ArrayList<>();
-        List<User> user = new ArrayList<>();
         List<Account> acc = new ArrayList<>();
         
-        User newUser1 = new User("성우진", "test1", 0000, 1, "111122223333", null, null);
-        user.add(newUser1);
-        User newUser2 = new User("최준혁", "test2", 2449, 2, "123456789012", "123412341234", null);
-        user.add(newUser2);
-        User newUser3 = new User("정수현", "test3", 6631, 3, "999988887777", "666655554444", "333322221111");
-        user.add(newUser3);
-        
+        User newUser1 = new User("성우진", "test1", "111122223333", null, null);
+        User.UserInteger(0000, 1);
+        User newUser2 = new User("최준혁", "test2", "123456789012", "123412341234", null);
+        User.UserInteger(2449, 2);
+        User newUser3 = new User("정수현", "test3", "999988887777", "666655554444", "333322221111");
+        User.UserInteger(6631, 3);
+	    
         Admin newAdmin1 = new Admin("admin1", "관리자1");
-        admin.add(newAdmin1);
         Admin.adPwd(1234);
         
         Admin newAdmin2 = new Admin("admin2", "관리자2");
-        admin.add(newAdmin2);
         Admin.adPwd(5678);
         
         Account newAcc1 = new Account("성우진", "111122223333", 1250000, 1,1111);
@@ -41,14 +37,22 @@ public class ATM{
         acc.add(newAcc6);
         
         
-        Admin ad = new Admin(null, 0, null);
-        User us =new User(null, null, 0, 0, null, null, null);
+        Admin ad = new Admin(null, null);
+        User us =new User(null, null, null, null, null);
+	Acount ac = new Account(null, null, 0, 0, 0);
         Scanner s = new Scanner(System.in);
-   
+	    
+   	System.out.println("--- System : ATM 프로그램을 실행합니다. ---\n");
+	    
         while(true){
 		System.out.println("> 관리자는 1, 고객은 2를 입력해주세요");
 		int a = s.nextInt();
-	
+		
+		int cheonWon =0;
+		int ohCheonWon =0;
+		int manWon =0;
+		int ohManWon =0;
+		
 		switch(a){
 		case 1:																//관리자로 로그인
 				String ad_id;
@@ -65,6 +69,7 @@ public class ATM{
 					System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 exit 합니다.\n");		
 				}else if(num == 2000) {
 					// 로그인 실패 시
+					System.out.println("--- System : 초기 화면으로 돌아갑니다. ---");
 					continue;
 				}
 				
@@ -97,17 +102,26 @@ public class ATM{
 					
 			
 				
-		case 2:																			//유저로 로그인
-				System.out.print("고객 아이디를 입력해주세요\n");
-				String str = s.next();	
+		case 2:					
+				//유저로 로그인
 				
-				System.out.println("비밀번호를 입력해주세요\n");
-				int PWD = s.nextInt();		
-				
-				us.userIdentification(str,PWD);
-				
-				System.out.println("1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 누르면 계좌 조회, 5를 누르면 exit");	
-				
+			String str;
+			int PWD;
+			System.out.print("> 고객 아이디를 입력해주세요\n");
+			str = s.next();	
+			
+			System.out.println("> 비밀번호를 입력해주세요");
+			PWD = s.nextInt();		
+			
+			int num2 = us.userIdentification(str,PWD);
+			if(num2 == 1000){
+				System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 누르면 계좌 조회, 5를 누르면 exit");	
+			}
+			else if(num2 == 2000) {
+				// 로그인 실패 시
+				System.out.println("--- System : 초기 화면으로 돌아갑니다. ---");
+				continue;
+			}
 				int a1 = s.nextInt();
 	
 				switch(a1){
