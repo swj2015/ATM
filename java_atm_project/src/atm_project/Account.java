@@ -1,13 +1,11 @@
 package atm_project;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Account {
 
 	Transaction transaction = new Transaction();
 	ArrayList<AccountInfo> acc;
-	ATM atm;
 
 	public Account(ArrayList<AccountInfo> acc) {
 		this.acc = acc;
@@ -85,15 +83,17 @@ public class Account {
 				cnt ++;
 				sent = i;
 			}
-			if (cnt == 2){
-				System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
-				acc.get(send).setAccBal(acc.get(send).getAccBal() - total);
-				acc.get(send).setAccBal(acc.get(sent).getAccBal() + total);
-			}
-			if (cnt != 2){
-				System.out.println("입출금 거래 정보가 맞지 않습니다!");
-				return 2004;
-			}
+		}
+		if (cnt == 2){
+			acc.get(send).setAccBal(acc.get(send).getAccBal() - total);
+			acc.get(sent).setAccBal(acc.get(sent).getAccBal() + total);
+			System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(send).getAccUser(), -total, 0, 0, 0, 0, acc.get(send).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), -total, 0, 0, 0, 0, acc.get(sent).getAccBal());
+		}
+		if (cnt != 2){
+			System.out.println("입출금 거래 정보가 맞지 않습니다!");
+			return 2004;
 		}
 		return 1000;
 	}

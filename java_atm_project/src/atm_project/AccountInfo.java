@@ -23,5 +23,4 @@ class AccountInfo {
     protected int getAccPWD() { return accPWD; }
     protected void setAccBal(int accBal) { this.accBal = accBal; }
 
-
 }

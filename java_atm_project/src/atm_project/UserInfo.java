@@ -1,7 +1,5 @@
 package atm_project;
 
-import java.util.ArrayList;
-
 class UserInfo {
     protected String userName;			//고객이름
     protected String userId;			//고객 아이디
