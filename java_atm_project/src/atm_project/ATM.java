@@ -29,9 +29,9 @@ public class ATM{
 
         UserInfo newUser1 = new UserInfo("성우진", "test1", 1123, 1, "38180204-266350", null, null);
         user.add(newUser1);
-        UserInfo newUser2 = new UserInfo("최준혁", "test2", 2449, 2, "123456789012", "123412341234", null);
+        UserInfo newUser2 = new UserInfo("최준혁", "test2", 2449, 2, "123456-789012", "123412-341234", null);
         user.add(newUser2);
-        UserInfo newUser3 = new UserInfo("정수현", "test3", 6631, 3, "999988887777", "666655554444", "333322221111");
+        UserInfo newUser3 = new UserInfo("정수현", "test3", 6631, 3, "999988-887777", "666655-554444", "333322-221111");
         user.add(newUser3);
 
         AdminInfo newAdmin1 = new AdminInfo("admin1", 1234, "관리자1");
@@ -41,15 +41,15 @@ public class ATM{
 
         AccountInfo newAcc1 = new AccountInfo("성우진", "38180204-266350", 1250000, 1,1111);
         acc.add(newAcc1);
-        AccountInfo newAcc2 = new AccountInfo("최준혁", "123456789012", 3800000, 1, 1111);
+        AccountInfo newAcc2 = new AccountInfo("최준혁", "123456-789012", 3800000, 1, 1111);
         acc.add(newAcc2);
-        AccountInfo newAcc3 = new AccountInfo("최준혁", "123412341234", 5000000, 2, 2222);
+        AccountInfo newAcc3 = new AccountInfo("최준혁", "123412-341234", 5000000, 2, 2222);
         acc.add(newAcc3);
-        AccountInfo newAcc4 = new AccountInfo("정수현", "999988887777", 1800000, 1, 1111);
+        AccountInfo newAcc4 = new AccountInfo("정수현", "999988-887777", 1800000, 1, 1111);
         acc.add(newAcc4);
-        AccountInfo newAcc5 = new AccountInfo("정수현", "666655554444", 800000, 2, 2222);
+        AccountInfo newAcc5 = new AccountInfo("정수현", "666655-554444", 800000, 2, 2222);
         acc.add(newAcc5);
-        AccountInfo newAcc6 = new AccountInfo("정수현", "333322221111", 240000, 3, 3333);
+        AccountInfo newAcc6 = new AccountInfo("정수현", "333322-221111", 240000, 3, 3333);
         acc.add(newAcc6);
 
         Admin ad = new Admin(admin);
