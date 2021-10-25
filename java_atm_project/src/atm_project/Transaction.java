@@ -52,4 +52,10 @@ public class Transaction {
 		atmInfo.left5ManWon = (atmInfo.left5ManWon - trans5ManWon);
 	} //ATM 지폐 빼기
 
+	protected void getATMLeft(){
+		System.out.println("ATM기 안에 남은 천원권 장 수는 : \n" + atmInfo.leftCheonWon);
+		System.out.println("ATM기 안에 남은 오천원권 장 수는 : \n" + atmInfo.left5CheonWon);
+		System.out.println("ATM기 안에 남은 만원권 장 수는 : \n" + atmInfo.leftManWon);
+		System.out.println("ATM기 안에 남은 오만원권 장 수는 : \n" + atmInfo.left5ManWon);
+	}
 }
