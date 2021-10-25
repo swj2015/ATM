@@ -61,7 +61,8 @@ public class Account {
 		return 2000;
 	}
 	
-	protected int remitReq(String sendAccNum, int sendAccPWD, String sentAccNum, int total){				//거래요청(타계좌간거래)
+	protected int remitReq(String sendAccNum, int sendAccPWD, String sentAccNum, int total){//거래요청(타계좌간거래)
+		int cnt = 0; int send = 0; int sent = 0;
 		for (int i=0 ; i<acc.size(); i++) {
 			if (sentAccNum.equals(acc.get(i).getAccNum()) && acc.get(i).getAccType() != 1){
 				System.out.println("입출금계좌로만 입금이 가능합니다!");
@@ -76,16 +77,27 @@ public class Account {
 					System.out.println("입출금계좌만 계좌간 거래가 가능합니다!");
 					return 2002;
 				}
-				acc.get(i).setAccBal(acc.get(i).getAccBal() - total);
-				System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(i).getAccUser(), acc.get(i).getAccNum(), acc.get(i).getAccBal());
+				send = i;
+
+				cnt ++;
 			}
 			if (sentAccNum.equals(acc.get(i).getAccNum())){
-				acc.get(i).setAccBal(acc.get(i).getAccBal() + total);
-				//System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(i).getAccUser(), acc.get(i).getAccNum(), acc.get(i).getAccBal());
+				cnt ++;
+				sent = i;
+			}
+			if (cnt == 2){
+				System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
+				acc.get(send).setAccBal(acc.get(send).getAccBal() - total);
+				acc.get(send).setAccBal(acc.get(sent).getAccBal() + total);
+			}
+			if (cnt != 2){
+				System.out.println("입출금 거래 정보가 맞지 않습니다!");
+				return 2004;
 			}
 		}
 		return 1000;
 	}
+
 	protected void depositSearch(String userId){//유저 계좌 조회 -> 가지고 있는 전체 계좌를 보여줌. 로그인 한 상태이고 무조건 1개 이상의 계좌가 있다고 가정. 오류처리 안함
 		for (int j = 0; j < acc.size(); j++) {
 			if (userId.equals(acc.get(j).getAccUser())) {

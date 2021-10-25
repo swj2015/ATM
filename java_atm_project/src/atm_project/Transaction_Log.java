@@ -27,5 +27,4 @@ public class Transaction_Log  {
 		this.trans5CheonWon = trans5CheonWon;
 		this.accBal = accBal;
 	}
-
 }
