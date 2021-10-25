@@ -76,8 +76,8 @@ public class ATM{
 						int manWon = s.nextInt();
 						int ohManWon = s.nextInt();
 
-						trans.atmLeftAddReq(cheonWon,ohCheonWon,manWon,ohManWon);
-						//ad.adminBillAdd(cheonWon,ohCheonWon,manWon,ohManWon);
+						//trans.atmLeftAddReq(cheonWon,ohCheonWon,manWon,ohManWon);
+						ad.adminBillAdd(cheonWon,ohCheonWon,manWon,ohManWon);
 
 						break;
 				case 2:

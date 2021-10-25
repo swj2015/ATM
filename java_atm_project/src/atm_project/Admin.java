@@ -7,7 +7,7 @@ public class Admin {
 
 	ArrayList<AdminInfo> admin;
 	ArrayList<Transaction_Log> transLog;
-	Transaction trans ;
+	Transaction trans = new Transaction();
 	ATMInfo atmInfo;
 
 	public Admin(ArrayList<AdminInfo> admin) {
