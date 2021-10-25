@@ -18,7 +18,7 @@ public class Account {
 			if (accNum.equals(acc.get(i).getAccNum()) && accPWD == acc.get(i).getAccPWD()){
 				transaction.accBalAddReq(accNum, total);
 				transaction.transLogReq(accNum, acc.get(i).getAccUser(), total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
-				transaction.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
+				//transaction.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
 				System.out.println("입금이 정상적으로 실행되었습니다!");
 				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
 				return 1000;

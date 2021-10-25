@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ATMInfo {
-    protected int leftManWon = 1000;            //만원권 남은 장수
-    protected int left5ManWon = 200;           //5만원권 남은 장수
-    protected int leftCheonWon = 0;            //천원권 남은 장수
-    protected int left5CheonWon = 0;            //5천원권 남은 장수
+    protected int leftManWon;            //만원권 남은 장수
+    protected int left5ManWon;           //5만원권 남은 장수
+    protected int leftCheonWon;            //천원권 남은 장수
+    protected int left5CheonWon;            //5천원권 남은 장수
 
     public ATMInfo(){
 
@@ -28,9 +28,10 @@ class ATMInfo {
     protected void set5CheonWon(int left5CheonWon) {this.left5CheonWon = left5CheonWon;} //ATM 전체 남은 5첝원권 장수 변경
 
     protected ATMInfo(int leftManWon, int left5ManWon, int leftCheonWon, int left5CheonWon) {
-        this.leftManWon = leftManWon;
-        this.left5ManWon = left5ManWon;
-        this.leftCheonWon = leftCheonWon;
-        this.left5CheonWon = left5CheonWon;
+        this.setManWon(leftManWon);
+        this.set5ManWon(left5ManWon);
+        this.setCheonWon(leftCheonWon);
+        this.set5CheonWon(left5CheonWon);
     } //ATM 기존 정보 저장에 사용
+
 }

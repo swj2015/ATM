@@ -26,11 +26,11 @@ public class Admin {
 		return 2000;
 	} //1000 : 성공 2000 : 오류
 
-	protected int adminBillAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
-		trans.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
-		System.out.println("성공적으로 지폐를 보충했습니다!");
-		return 1000;
-	}//관리자 지폐 입금
+//	protected int adminBillAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
+//		trans.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
+//		//System.out.println("성공적으로 지폐를 보충했습니다!");
+//		return 1000;
+//	}//관리자 지폐 입금
 
 	protected int adminBillTake(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
 		if(atmInfo.leftCheonWon < cheonWon || atmInfo.left5CheonWon < ohCheonWon || atmInfo.leftManWon < manWon || atmInfo.left5ManWon < ohManWon){

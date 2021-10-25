@@ -40,12 +40,16 @@ public class Transaction {
 		return 0;
 	}
 
-	protected void atmLeftAddReq(int transCheonWon, int trans5CheonWon, int transManWon, int trans5ManWon) {
-		atmInfo.leftCheonWon = (atmInfo.leftCheonWon + transCheonWon);
-		atmInfo.left5CheonWon = (atmInfo.left5CheonWon + trans5CheonWon);
-		atmInfo.leftManWon = (atmInfo.leftManWon + transManWon);
-		atmInfo.left5ManWon = (atmInfo.left5ManWon + trans5ManWon);
-	} //ATM 지폐 추가
+//	protected void atmLeftAddReq(int transCheonWon, int trans5CheonWon, int transManWon, int trans5ManWon) {
+//		atmInfo.setCheonWon(atmInfo.getLeftCheonWon() + transCheonWon);
+//		atmInfo.set5CheonWon(atmInfo.getLeft5CheonWon() + trans5CheonWon);
+//		atmInfo.setManWon(atmInfo.getLeftManWon() + transManWon);
+//		atmInfo.set5ManWon(atmInfo.getLeft5ManWon() + trans5ManWon);
+//		System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atmInfo.getLeftCheonWon());
+//		System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atmInfo.getLeft5CheonWon());
+//		System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atmInfo.getLeftManWon());
+//		System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atmInfo.getLeft5ManWon());
+//	} //ATM 지폐 추가
 
 	protected void atmLeftSubReq(int transCheonWon, int trans5CheonWon, int transManWon, int trans5ManWon){
 		atmInfo.leftCheonWon = (atmInfo.leftCheonWon - transCheonWon);
@@ -55,9 +59,9 @@ public class Transaction {
 	} //ATM 지폐 빼기
 
 	protected void getATMLeft(){
-		System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atmInfo.leftCheonWon);
-		System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atmInfo.left5CheonWon);
-		System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atmInfo.leftManWon);
-		System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atmInfo.left5ManWon);
+		System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atmInfo.getLeftCheonWon());
+		System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atmInfo.getLeft5CheonWon());
+		System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atmInfo.getLeftManWon());
+		System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atmInfo.getLeft5ManWon());
 	}
 }
