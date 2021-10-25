@@ -7,8 +7,10 @@ public class Transaction {
 
 	ATMInfo atmInfo = new ATMInfo();
 	Admin admin;
-	List<AccountInfo> acc;
-	List<Transaction_Log> transLog;
+	ArrayList<AccountInfo> acc;
+	ArrayList<Transaction_Log> transLog = new ArrayList<>();
+	//Account ac = new Account(acc);
+
 
 //	public Transaction(ArrayList<Transaction_Log> transLog) {
 //		this.transLog = transLog;
@@ -53,9 +55,9 @@ public class Transaction {
 	} //ATM 지폐 빼기
 
 	protected void getATMLeft(){
-		System.out.println("ATM기 안에 남은 천원권 장 수는 : \n" + atmInfo.leftCheonWon);
-		System.out.println("ATM기 안에 남은 오천원권 장 수는 : \n" + atmInfo.left5CheonWon);
-		System.out.println("ATM기 안에 남은 만원권 장 수는 : \n" + atmInfo.leftManWon);
-		System.out.println("ATM기 안에 남은 오만원권 장 수는 : \n" + atmInfo.left5ManWon);
+		System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atmInfo.leftCheonWon);
+		System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atmInfo.left5CheonWon);
+		System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atmInfo.leftManWon);
+		System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atmInfo.left5ManWon);
 	}
 }

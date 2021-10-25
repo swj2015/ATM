@@ -12,6 +12,10 @@ class AccountInfo {
     protected int accType;			//계좌종류 => 1.입출금, 2.정기예금, 3.정기적금
     protected int accPWD;			//계좌 비밀번호
 
+    public AccountInfo(){
+
+    }
+
     protected AccountInfo(String accUser, String accNum, int accBal, int accType, int accPWD){
         this.accUser = accUser;
         this.accNum = accNum;
