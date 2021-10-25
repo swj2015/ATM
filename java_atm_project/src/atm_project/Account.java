@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Account {
 
-	Transaction transaction;
+	Transaction transaction = new Transaction();
 	ATMInfo atmInfo;
 	ArrayList<AccountInfo> acc;
 
@@ -13,14 +13,19 @@ public class Account {
 		this.acc = acc;
 	}
 
-	protected void depositReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){ //입금요청
+	protected int depositReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){ //입금요청
 		for (int i=0 ; i<acc.size(); i++){
 			if (accNum == acc.get(i).getAccNum() && accPWD == acc.get(i).getAccPWD()){
 				transaction.accBalAddReq(accNum, total);
+				transaction.transLogReq(accNum, acc.get(i).getAccUser(), total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+				transaction.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
+				System.out.println("입금이 정상적으로 실행되었습니다!");
+				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
+				return 1000;
 			}
-			transaction.transLogReq(accNum, acc.get(i).getAccUser(), -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 		}
-		transaction.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
+		System.out.println("계좌 정보가 일치하지 않습니다!");
+		return 2000;
 	}
 	
 	protected int withdrawReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){//출금요청
@@ -37,7 +42,7 @@ public class Account {
 				transaction.accBalSubReq(accNum, total);
 				break;
 			}
-			transaction.transLogReq(accNum, acc.get(i).getAccUser(), total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+			transaction.transLogReq(accNum, acc.get(i).getAccUser(), -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 		}
 		transaction.atmLeftSubReq(cheonWon, ohCheonWon, manWon, ohManWon);
 
@@ -58,5 +63,21 @@ public class Account {
 			}
 		}
 		return 1000;
+	}
+	protected void depositSearch(String userId){//유저 계좌 조회 -> 가지고 있는 전체 계좌를 보여줌. 로그인 한 상태이고 무조건 1개 이상의 계좌가 있다고 가정. 오류처리 안함
+		System.out.println(acc.get(0).getAccUser());
+		for (int j = 0; j < acc.size(); j++) {
+			if (userId.equals(acc.get(j).getAccUser())) {
+				if (acc.get(j).getAccType() == 1) {
+					System.out.printf("유저의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+				}
+				if (acc.get(j).getAccType() == 2) {
+					System.out.printf("유저의 %s 정기예금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+				}
+				if (acc.get(j).getAccType() == 3) {
+					System.out.printf("유저의 %s 정기적금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+				}
+			}
+		}
 	}
 }
