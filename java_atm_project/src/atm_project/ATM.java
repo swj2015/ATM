@@ -25,10 +25,7 @@ public class ATM{
     	ArrayList<AdminInfo> admin = new ArrayList<>();
         ArrayList<UserInfo> user = new ArrayList<>();
         ArrayList<AccountInfo> acc = new ArrayList<>();
-        ArrayList<ATMInfo> atmInfo = new ArrayList<>();
 
-        ATMInfo newATM = new ATMInfo(1000, 200, 0 ,0);
-        atmInfo.add(newATM);
 
         UserInfo newUser1 = new UserInfo("성우진", "test1", 1123, 1, "111122223333", null, null);
         user.add(newUser1);
@@ -127,7 +124,6 @@ public class ATM{
 								newmanWon = s.nextInt();
 								System.out.print("입금하실 오만원권을 입력해주세요.\n");
 								newohManWon = s.nextInt();
-
 								atm.billAdd(newcheonWon,newohCheonWon,newmanWon,newohManWon);
 
 								break;
@@ -141,10 +137,23 @@ public class ATM{
 								newmanWon = s.nextInt();
 								System.out.print("출금하실 오만원권을 입력해주세요.\n");
 								newohManWon = s.nextInt();
-								//ad.adminBillTake(cheonWon,ohCheonWon,manWon,ohManWon);
+								atm.billAdd(-newcheonWon,-newohCheonWon,-newmanWon,-newohManWon);
+								if(atm.leftCheonWon < newcheonWon) { System.out.println("천원권의 매수가 부족합니다!");  break; }
+								if(atm.left5CheonWon < newohCheonWon) { System.out.println("오천원권의 매수가 부족합니다!");  break; }
+								if(atm.leftManWon < newmanWon) { System.out.println("만원권의 매수가 부족합니다!");  break; }
+								if(atm.left5ManWon < newohManWon) { System.out.println("오만원권의 매수가 부족합니다!");  break; }
+								System.out.println("성공적으로 출금되었습니다!");
+								System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atm.leftCheonWon);
+								System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atm.left5CheonWon);
+								System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atm.leftManWon);
+								System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
 								break;
 							case 3:
-								trans.getATMLeft();
+								//trans.getATMLeft();
+								System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atm.leftCheonWon);
+								System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atm.left5CheonWon);
+								System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atm.leftManWon);
+								System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
 								break;
 							case 4:
 
@@ -176,7 +185,7 @@ public class ATM{
 
 					while(n != 5) {
 						if(num1 == 1000){
-							System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그인 화면으로 돌아갑니다. \n");
+							System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그인 화면으로 돌아갑니다.");
 						}else if(num1 == 2000) {
 							// 로그인 실패 시
 							System.out.println("--- System : 로그인 오류. 로그인 화면으로 돌아갑니다. ---");
@@ -204,9 +213,10 @@ public class ATM{
 								newmanWon = s.nextInt();
 								System.out.print("입금하실 오만원권 장 수를 입력해주세요.\n");
 								newohManWon = s.nextInt();
-
-
-								//ac.depositReq(accNum, accPWD, total, cheonWon, ohCheonWon, manWon, ohManWon);
+								if ((1000 * newcheonWon + 5000 * newohCheonWon + 10000 * newmanWon + 50000 * newohManWon) == total){
+									System.out.println("알맞은 장 수의 지폐를 넣어야 합니다!");
+								}
+								ac.depositReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
 								break;
 							case 2:
 								System.out.print("출금을 시작합니다.\n");
@@ -224,7 +234,14 @@ public class ATM{
 								newmanWon = s.nextInt();
 								System.out.print("출금하실 오만원권 장 수를 입력해주세요.\n");
 								newohManWon = s.nextInt();
-								//ac.withdrawReq(accNum, accPWD, total, cheonWon, ohCheonWon, manWon, ohManWon);
+								if ((1000 * newcheonWon + 5000 * newohCheonWon + 10000 * newmanWon + 50000 * newohManWon) == total){
+									System.out.println("알맞은 장 수의 지폐로 출금해야 합니다!"); break;
+								}
+								if (atm.leftCheonWon < newcheonWon) { System.out.println("ATM 내에 천원권 지폐가 부족합니다!"); break; }
+								if (atm.left5CheonWon < newohCheonWon) { System.out.println("ATM 내에 오천원권 지폐가 부족합니다!"); break; }
+								if (atm.leftManWon < newmanWon) { System.out.println("ATM 내에 만원권 지폐가 부족합니다!"); break; }
+								if (atm.left5ManWon < newohManWon) { System.out.println("ATM 내에 오만원권 지폐가 부족합니다!"); break; }
+								ac.withdrawReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
 								break;
 							case 3:
 								System.out.print("계좌간 거래를 시작합니다.\n");
