@@ -40,6 +40,8 @@ public class ATM{
         Admin ad = new Admin(admin);
         User us = new User(user);
         Account ac = new Account(acc);
+        Transaction trans = new Transaction();
+        ATMInfo atmInfo;
         Scanner s = new Scanner(System.in);
 
         while(true){
@@ -67,14 +69,15 @@ public class ATM{
 				switch(n){
 
 				case 1:
-						System.out.print("관리자 지폐 입금을 시작합니다");
+						System.out.print("관리자 지폐 입금을 시작합니다 \n");
 
 						int cheonWon = s.nextInt();		//입금할 지폐 장수 입력
 						int ohCheonWon = s.nextInt();
 						int manWon = s.nextInt();
 						int ohManWon = s.nextInt();
 
-						ad.adminBillAdd(cheonWon,ohCheonWon,manWon,ohManWon);
+						trans.atmLeftAddReq(cheonWon,ohCheonWon,manWon,ohManWon);
+						//ad.adminBillAdd(cheonWon,ohCheonWon,manWon,ohManWon);
 
 						break;
 				case 2:
