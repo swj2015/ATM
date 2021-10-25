@@ -40,16 +40,25 @@ public class ATM{
         Admin ad = new Admin(admin);
         User us = new User(user);
         Account ac = new Account(acc);
+        Transaction trans = new Transaction();
         Scanner s = new Scanner(System.in);
 		int cheonWon=0;
 		int ohCheonWon =0;
 		int manWon =0;
 		int ohManWon=0;
 
+		String accNum;
+		int accPWD;
+		int total;
+		String sendAccNum;
+		int sendAccPWD;
+		String sentAccNum;
+		
        	System.out.println("--- System : ATM 프로그램을 실행합니다. ---\n");
-
+       	
         while(true){
-        	System.out.println("[ 로그인 ]");
+        System.out.println("[ 로그인 ]");
+        
 		System.out.println("관리자는 1번, 고객은 2번을 입력해주세요");
 		int a = s.nextInt();
 		if(a!=1 && a!=2) {
@@ -68,11 +77,10 @@ public class ATM{
 				int num = ad.adminIdentification(ad_id,ad_PWD);		//관리자 로그인 성공 실패 메소드
  
 				if(num == 1000){
-					System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 로그아웃됩니다.");		
+					System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, , 3을 누르면 ATM내 남은 지폐 확인, 4를 누르면 로그인화면으로 돌아갑니다.\n");
 				}else if(num == 2000) {
 					// 로그인 실패 시
-					System.out.println("--- System : 로그인 오류. 로그인 화면으로 돌아갑니다. ---");
-					
+					System.out.println("--- System : 초기 화면으로 돌아갑니다. ---");
 					continue;
 				}
 				int n = s.nextInt();
@@ -83,27 +91,38 @@ public class ATM{
 				case 1:
 						System.out.print("지폐 입금을 시작합니다.\n");
 						
-								//입금할 지폐 장수 입력
-						System.out.print("순서대로 지폐의 장수를 입력해주세요.\n 천원권: \n 오천원권: \n 만원권: \n 오만원권: \n");
-						cheonWon = s.nextInt();
+						//입금할 지폐 장수 입력
+						System.out.print("입금하실 천원권을 입력해주세요.\n");
+						cheonWon = s.nextInt(); 
+						System.out.print("입금하실 오천원권을 입력해주세요.\n");
 						ohCheonWon = s.nextInt();
+						System.out.print("입금하실 만원권을 입력해주세요.\n");
 						manWon = s.nextInt();
+						System.out.print("입금하실 오만원권을 입력해주세요.\n");
 						ohManWon = s.nextInt();
 
 						ad.adminBillAdd(cheonWon,ohCheonWon,manWon,ohManWon);
 
 						break;
 				case 2:
-						System.out.print("관리자 지폐 출금을 시작합니다.\n");
-						
+						System.out.print("지폐 출금을 시작합니다.\n");
+						System.out.print("출금하실 천원권을 입력해주세요.\n");
+						cheonWon = s.nextInt(); 
+						System.out.print("출금하실 오천원권을 입력해주세요.\n");
+						ohCheonWon = s.nextInt();
+						System.out.print("출금하실 만원권을 입력해주세요.\n");
+						manWon = s.nextInt();
+						System.out.print("출금하실 오만원권을 입력해주세요.\n");
+						ohManWon = s.nextInt();
 						ad.adminBillTake(cheonWon,ohCheonWon,manWon,ohManWon);
 						break;
 				case 3:
-					
-					System.out.println("--- System : 로그아웃되었습니다. ---");
+						trans.getATMLeft();
 						break;
+				case 4:
+						break;
+					
 				}
-
 				break;
 
 
@@ -118,10 +137,10 @@ public class ATM{
 				int num1 = us.userIdentification(str,PWD);		//고객 로그인 성공 실패 메소드
 				 
 				if(num1 == 1000){
-					System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그아웃됩니다. \n");		
+					System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그인 화면으로 돌아갑니다. \n");		
 				}else if(num1 == 2000) {
 					// 로그인 실패 시
-					System.out.println("--- System : 로그인 오류. 로그인 화면으로 돌아갑니다. ---");
+					System.out.println("--- System : 초기 화면으로 돌아갑니다. ---");
 					continue;
 				}
 
@@ -130,30 +149,66 @@ public class ATM{
 				switch(a1){
 
 				case 1:
-						System.out.print("입금을 시작합니다. 입금할 금액을 입력해주세요.\n");
-						
-						cheonWon = s.nextInt();
+						System.out.print("입금을 시작합니다.\n");
+			
+						System.out.print("입금 계좌를 입력해주세요.\n");
+						accNum = s.next();
+						System.out.print("계좌 비밀번호를 입력해주세요.\n");
+						accPWD = s.nextInt();
+						System.out.print("총금액을 입력해주세요.\n");
+						total = s.nextInt();
+						System.out.print("입금하실 천원권을 입력해주세요.\n");
+						cheonWon = s.nextInt(); 
+						System.out.print("입금하실 오천원권을 입력해주세요.\n");
 						ohCheonWon = s.nextInt();
+						System.out.print("입금하실 만원권을 입력해주세요.\n");
 						manWon = s.nextInt();
+						System.out.print("입금하실 오만원권을 입력해주세요.\n");
 						ohManWon = s.nextInt();
-
-						ac.depositReq(acc.get(0).getAccNum(), acc.get(0).getAccPWD(), acc.get(0).getAccBal(), cheonWon, ohCheonWon, manWon, ohManWon);
+						
+						
+						ac.depositReq(accNum, accPWD, total, cheonWon, ohCheonWon, manWon, ohManWon);
 						break;
 				case 2:
-						System.out.print("출금을 시작합니다. 출금할 금액을 입력해주세요.\n");
-						int withdraw = s.nextInt();
-						ac.withdrawReq(acc.get(0).getAccNum(), acc.get(0).getAccPWD(), acc.get(0).getAccBal(), cheonWon, ohCheonWon, manWon, ohManWon);
+						System.out.print("출금을 시작합니다.\n");
+						System.out.print("출금 계좌를 입력해주세요.\n");
+						accNum = s.next();
+						System.out.print("계좌 비밀번호를 입력해주세요.\n");
+						accPWD = s.nextInt();
+						System.out.print("총금액을 입력해주세요.\n");
+						total = s.nextInt();
+						System.out.print("출금하실 천원권을 입력해주세요.\n");
+						cheonWon = s.nextInt(); 
+						System.out.print("출금하실 오천원권을 입력해주세요.\n");
+						ohCheonWon = s.nextInt();
+						System.out.print("출금하실 만원권을 입력해주세요.\n");
+						manWon = s.nextInt();
+						System.out.print("출금하실 오만원권을 입력해주세요.\n");
+						ohManWon = s.nextInt();
+						ac.withdrawReq(accNum, accPWD, total, cheonWon, ohCheonWon, manWon, ohManWon);
 						break;
 				case 3:
-						System.out.print("계좌간 거래를 시작합니다");
-						//ac.remitReq();
+						System.out.print("계좌간 거래를 시작합니다.\n");
+						System.out.print("보내는 계좌번호를 입력해주세요.\n");
+						
+						sendAccNum = s.next();
+						System.out.print("계좌 비밀번호를 입력해주세요.\n");
+
+						sendAccPWD = s.nextInt();
+						System.out.print("받는 계좌번호를 입력해주세요.\n");
+
+						sentAccNum = s.next();
+						System.out.print("보낼 총금액을 입력해주세요.\n");
+
+						total = s.nextInt();
+						
+						ac.remitReq(sendAccNum,sendAccPWD,sentAccNum,total);
 						break;
 				case 4:
 						System.out.print("계좌 조회를 시작합니다");
 						us.depositSearch(str);						//처음 입력받은 고객 아이디에 해당하는 계좌 조회
 						break;
 				case 5:
-					System.out.println("--- System : 로그아웃되었습니다. ---");
 						break;
 				}
 				break;
