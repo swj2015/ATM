@@ -217,6 +217,7 @@ public class ATM{
 									System.out.println("알맞은 장 수의 지폐를 넣어야 합니다!");
 								}
 								ac.depositReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
+								atm.billAdd(newcheonWon,newohCheonWon,newmanWon,newohManWon);
 								break;
 							case 2:
 								System.out.print("출금을 시작합니다.\n");
@@ -242,6 +243,7 @@ public class ATM{
 								if (atm.leftManWon < newmanWon) { System.out.println("ATM 내에 만원권 지폐가 부족합니다!"); break; }
 								if (atm.left5ManWon < newohManWon) { System.out.println("ATM 내에 오만원권 지폐가 부족합니다!"); break; }
 								ac.withdrawReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
+								atm.billAdd(-newcheonWon,-newohCheonWon,-newmanWon,-newohManWon);
 								break;
 							case 3:
 								System.out.print("계좌간 거래를 시작합니다.\n");

@@ -26,7 +26,6 @@ public class Account {
 					}
 				}
 				transaction.transLogReq(accNum, acc.get(i).getAccUser(), total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
-				//ATM에 금액 추가해주기
 				System.out.println("입금이 정상적으로 실행되었습니다!");
 				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
 				return 1000;
@@ -52,11 +51,9 @@ public class Account {
 						acc.get(j).setAccBal(acc.get(j).getAccBal() - total);
 					}
 				}
-//				ATM기 내부 지폐 장수 판별
 				transaction.transLogReq(accNum, acc.get(i).getAccUser(), -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 				System.out.println("출금이 정상적으로 실행되었습니다!");
 				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
-				//ATM 지폐 빼주기
 				return 1000;
 			}
 		}
