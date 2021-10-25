@@ -12,7 +12,7 @@ public class ATM{
         ArrayList<UserInfo> user = new ArrayList<>();
         ArrayList<AccountInfo> acc = new ArrayList<>();
 
-        UserInfo newUser1 = new UserInfo("성우진", "test1", 0123, 1, "111122223333", null, null);
+        UserInfo newUser1 = new UserInfo("성우진", "test1", 1515, 1, "111122223333", null, null);
         user.add(newUser1);
         UserInfo newUser2 = new UserInfo("최준혁", "test2", 2449, 2, "123456789012", "123412341234", null);
         user.add(newUser2);
