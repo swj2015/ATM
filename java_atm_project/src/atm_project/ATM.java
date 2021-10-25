@@ -55,9 +55,10 @@ public class ATM{
 		String sentAccNum;
 		
        	System.out.println("--- System : ATM 프로그램을 실행합니다. ---\n");
-
+       	
         while(true){
-
+        System.out.println("[ 로그인 ]");
+        
 		System.out.println("관리자는 1번, 고객은 2번을 입력해주세요");
 		int a = s.nextInt();
 		if(a!=1 && a!=2) {

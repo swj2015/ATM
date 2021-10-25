@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class Admin {
 
 	ArrayList<AdminInfo> admin;
-	Transaction trans;
-	ATMInfo atmInfo;
+	ArrayList<Transaction_Log> transLog;
+	Transaction trans = new Transaction();
+	ATMInfo atmInfo = new ATMInfo();
 
 	public Admin(ArrayList<AdminInfo> admin) {
 		this.admin = admin;
