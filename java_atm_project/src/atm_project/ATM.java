@@ -121,7 +121,7 @@ public class ATM{
 					System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그아웃됩니다. \n");		
 				}else if(num1 == 2000) {
 					// 로그인 실패 시
-					System.out.println("--- System : 초기 화면으로 돌아갑니다. ---");
+					System.out.println("--- System : 로그인 오류. 로그인 화면으로 돌아갑니다. ---");
 					continue;
 				}
 
