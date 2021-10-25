@@ -81,9 +81,14 @@ public class ATM{
 
 						break;
 				case 2:
-						System.out.print("관리자 지폐 출금을 시작합니다");
+						System.out.print("관리자 지폐 출금을 시작합니다 \n");
 
-						//ad.adminBillTake(cheonWon,ohCheonWon,manWon,ohManWon);
+						int cheonWon2 = s.nextInt();		//입금할 지폐 장수 입력
+						int ohCheonWon2 = s.nextInt();
+						int manWon2 = s.nextInt();
+						int ohManWon2 = s.nextInt();
+
+						ad.adminBillTake(cheonWon2,ohCheonWon2,manWon2,ohManWon2);
 						break;
 				case 3:
 						System.exit(0);
