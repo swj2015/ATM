@@ -54,6 +54,7 @@ public class ATM {
         Admin ad = new Admin(admin);
         User us = new User(user);
         Account ac = new Account(acc);
+        Transaction trans = new Transaction();
         Scanner s = new Scanner(System.in);
 
         int newcheonWon = 0;
@@ -98,7 +99,7 @@ public class ATM {
 
                         if (num == 1000) {
 
-                            System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 ATM내 남은 지폐 확인, 4를 누르면 로그인화면으로 돌아갑니다.");
+                            System.out.println("> 1을 누르면 관리자 지폐 입금을, 2을 누르면 관리자 지폐 출금, 3을 누르면 ATM내 남은 지폐 확인, 4를 누르면 로그인화면으로 돌아갑니다. 5를 누르면 Transaction Log를 조회할 수 있습니다.");
                         } else if (num == 2000) {
                             // 로그인 실패 시
                             System.out.println("--- System : 로그인 오류. 로그인 화면으로 돌아갑니다. ---");
@@ -121,7 +122,6 @@ public class ATM {
                                 System.out.print("입금하실 오만원권을 입력해주세요.\n");
                                 newohManWon = s.nextInt();
                                 atm.billAdd(newcheonWon, newohCheonWon, newmanWon, newohManWon);
-
                                 break;
                             case 2:
                                 System.out.print("지폐 출금을 시작합니다.\n");
@@ -163,12 +163,12 @@ public class ATM {
                                 System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
                                 break;
                             case 4:
-
                                 System.out.println("--- System : 로그아웃 성공 ---");
                                 break;
+                            case 5:
+                                ac.transLogSearch();
+                                break;
                         }
-
-
                     }
                     continue;
 
@@ -176,7 +176,6 @@ public class ATM {
                 case 2:                                                                            //유저로 로그인
                     System.out.print("고객 아이디를 입력해주세요\n");
                     String str = s.next();
-
                     System.out.println("비밀번호를 입력해주세요");
                     int PWD = s.nextInt();
                     int num2 = 0;
@@ -227,7 +226,7 @@ public class ATM {
                                 if (vali == 1000) {
                                     atm.billAdd(newcheonWon, newohCheonWon, newmanWon, newohManWon);
                                 }
-                                System.out.println(vali);
+                                //System.out.println(vali);
                                 break;
                             case 2:
                                 vali = 0;
