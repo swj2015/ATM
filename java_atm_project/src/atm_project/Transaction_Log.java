@@ -2,7 +2,7 @@ package atm_project;
 
 import java.util.Date;
 
-public class Transaction_Log  {
+class Transaction_Log  {
 
 	Date date = new Date();
 	protected String transAcc;			//거래 요청 계좌번호

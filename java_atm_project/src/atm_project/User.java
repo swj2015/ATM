@@ -2,11 +2,11 @@ package atm_project;
 
 import java.util.ArrayList;
 
-public class User {
+class User {
 
 	ArrayList<UserInfo> user;
 
-	public User(ArrayList<UserInfo> user) {
+	User(ArrayList<UserInfo> user) {
 		this.user = user;
 	}
 

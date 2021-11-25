@@ -3,11 +3,11 @@ package atm_project;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Admin {
+class Admin {
 
 	ArrayList<AdminInfo> admin;
 
-	public Admin(ArrayList<AdminInfo> admin) {
+	Admin(ArrayList<AdminInfo> admin) {
 		this.admin = admin;
 	}
 

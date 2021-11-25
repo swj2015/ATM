@@ -3,13 +3,13 @@ package atm_project;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Account {
+class Account {
 
 	Date date = new Date();
 	Transaction transaction = new Transaction();
 	ArrayList<AccountInfo> acc;
 
-	public Account(ArrayList<AccountInfo> acc) {
+	Account(ArrayList<AccountInfo> acc) {
 		this.acc = acc;
 	}
 

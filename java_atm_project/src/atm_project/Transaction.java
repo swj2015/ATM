@@ -2,7 +2,7 @@ package atm_project;
 
 import java.util.ArrayList;
 
-public class Transaction {
+class Transaction {
 
 	ArrayList<AccountInfo> acc = new ArrayList<>();
 	ArrayList<Transaction_Log> transLog = new ArrayList<>();
