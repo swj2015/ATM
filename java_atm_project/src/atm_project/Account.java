@@ -1,9 +1,11 @@
 package atm_project;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Account {
 
+	Date date = new Date();
 	Transaction transaction = new Transaction();
 	ArrayList<AccountInfo> acc;
 
@@ -23,7 +25,7 @@ public class Account {
 						acc.get(j).setAccBal(acc.get(j).getAccBal() + total);
 					}
 				}
-				transaction.transLogReq(accNum, acc.get(i).getAccUser(), "입금", total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+				transaction.transLogReq(accNum, acc.get(i).getAccUser(), date.toString(), "입금", total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 				System.out.println("입금이 정상적으로 실행되었습니다!");
 				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
 				return 1000;
@@ -54,7 +56,7 @@ public class Account {
 						acc.get(j).setAccBal(acc.get(j).getAccBal() - total);
 					}
 				}
-				transaction.transLogReq(accNum, acc.get(i).getAccUser(), "출금", -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+				transaction.transLogReq(accNum, acc.get(i).getAccUser(), date.toString(), "출금", -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 				System.out.println("출금이 정상적으로 실행되었습니다!");
 				System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
 				return 1000;
@@ -93,8 +95,8 @@ public class Account {
 			acc.get(send).setAccBal(acc.get(send).getAccBal() - total);
 			acc.get(sent).setAccBal(acc.get(sent).getAccBal() + total);
 			System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
-			transaction.transLogReq(sendAccNum, acc.get(send).getAccUser(), "출금", -total, 0, 0, 0, 0, acc.get(send).getAccBal());
-			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), "입금", -total, 0, 0, 0, 0, acc.get(sent).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(send).getAccUser(), date.toString(), "출금", -total, 0, 0, 0, 0, acc.get(send).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), date.toString(),"입금", -total, 0, 0, 0, 0, acc.get(sent).getAccBal());
 		}
 		if (cnt != 2){
 			System.out.println("입출금 거래 정보가 맞지 않습니다!");

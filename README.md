@@ -35,3 +35,5 @@
 
 21.11.25. 00:57
 관리자 계정에 transaction Log 조회 추가
+21.11.25. 16:52
+Transaction Log 에 시간 추가

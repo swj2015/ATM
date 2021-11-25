@@ -25,8 +25,9 @@ public class Transaction_Log  {
 	protected int getTrans5CheonWon() {return trans5CheonWon;}
 	protected int getAccBal() {return accBal;}
 	protected String getTransType() {return transType;}
+	protected String getTransDate() {return transDate;}
 
-	protected  Transaction_Log (String transAcc, String reqUserName, String transType, int transTotal, int transManWon, int trans5ManWon, int transCheonWon, int trans5CheonWon, int accBal){
+	protected  Transaction_Log (String transAcc, String reqUserName, String transType, String transDate, int transTotal, int transManWon, int trans5ManWon, int transCheonWon, int trans5CheonWon, int accBal){
 		this.transAcc = transAcc;
 		this.reqUserName = reqUserName;
 		this.transType = transType;
@@ -37,5 +38,6 @@ public class Transaction_Log  {
 		this.transCheonWon = transCheonWon;
 		this.trans5CheonWon = trans5CheonWon;
 		this.accBal = accBal;
+		this.transDate = transDate;
 	}
 }
