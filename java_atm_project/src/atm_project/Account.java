@@ -37,8 +37,7 @@ class Account {
 
 	protected ArrayList transLogSearch(){
 		System.out.println("Transaction Log 조회!");
-//		retrun (transaction.transLogPrint());
-		return transaction.transLog;
+		return transaction.transLogPrint();
 	}
 	
 	protected int withdrawReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){//출금요청
