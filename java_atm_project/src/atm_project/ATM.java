@@ -563,35 +563,55 @@ public class ATM extends JFrame { //
 		 		String new5m = uo5m.getText();
 		 		newohManWon = Integer.parseInt(new5m);
 				
+		 		int a=0;
+		 		
 				if ((1000 * newcheonWon + 5000 * newohCheonWon + 10000 * newmanWon + 50000 * newohManWon) == total){
-					if (atm.leftCheonWon < newcheonWon) { JOptionPane.showConfirmDialog(null, "ATM 내에 천원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); }
-					if (atm.left5CheonWon < newohCheonWon) { JOptionPane.showConfirmDialog(null, "ATM 내에 5천원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); }
-					if (atm.leftManWon < newmanWon) { JOptionPane.showConfirmDialog(null, "ATM 내에 만원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); }
-					if (atm.left5ManWon < newohManWon) { JOptionPane.showConfirmDialog(null, "ATM 내에 5만원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); }
-					vali = ac.withdrawReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
-					if(vali == 1000) {
-						atm.billAdd(-newcheonWon,-newohCheonWon,-newmanWon,-newohManWon);
-						JOptionPane.showMessageDialog(null, "정상적으로 출금되었습니다!");
-						userF2.dispose();
-				    	userFr.setVisible(true);
+					if (atm.leftCheonWon < newcheonWon) { 
+						a=1;
+						JOptionPane.showConfirmDialog(null, "ATM 내에 천원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); 
+						}
+					else if (atm.left5CheonWon < newohCheonWon) { 
+						a=2;
+						JOptionPane.showConfirmDialog(null, "ATM 내에 5천원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); 
+						}
+					else if (atm.leftManWon < newmanWon) { 
+						a=3;
+						JOptionPane.showConfirmDialog(null, "ATM 내에 만원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); 
+						}
+					else if (atm.left5ManWon < newohManWon) { 
+						a=4;
+						JOptionPane.showConfirmDialog(null, "ATM 내에 5만원권 지폐가 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE); 
 					}
-					else if(vali == 2000) {
-						JOptionPane.showConfirmDialog(null, "알맞지 않은 계좌번호나 비밀번호입니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					
+					if(a<5) {
+						if(a==0) {
+							vali = ac.withdrawReq(accNum, accPWD, total, newcheonWon, newohCheonWon, newmanWon, newohManWon);
+						}
+							if(vali == 1000) {
+								atm.billAdd(-newcheonWon,-newohCheonWon,-newmanWon,-newohManWon);
+								JOptionPane.showMessageDialog(null, "정상적으로 출금되었습니다!");
+								userF2.dispose();
+						    	userFr.setVisible(true);
+							}
+							else if(vali == 2000) {
+								JOptionPane.showConfirmDialog(null, "알맞지 않은 계좌번호나 비밀번호입니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+								
+							}
+							else if(vali == 2001) {
+								JOptionPane.showConfirmDialog(null, "계좌 잔액이 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+							}
+							else if(vali == 2003) {
+								JOptionPane.showConfirmDialog(null, "입출금계좌의 출금만 가능합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+							}
 						
-					}
-					else if(vali == 2001) {
-						JOptionPane.showConfirmDialog(null, "계좌 잔액이 부족합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-					}
-					else if(vali == 2003) {
-						JOptionPane.showConfirmDialog(null, "입출금계좌의 출금만 가능합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						
 					}
 				}
 				else {
 					JOptionPane.showConfirmDialog(null, "출금하실 총 금액과 지폐 금액의 총합이 같아야 합니다.", "출금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				}
-				
-				
 			}
+			
  		});
     	
     	
