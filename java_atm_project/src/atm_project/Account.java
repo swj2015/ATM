@@ -35,9 +35,10 @@ class Account {
 		return 2000;
 	}
 
-	protected void transLogSearch(){
+	protected ArrayList transLogSearch(){
 		System.out.println("Transaction Log 조회!");
-		transaction.transLogPrint();
+//		retrun (transaction.transLogPrint());
+		return transaction.transLog;
 	}
 	
 	protected int withdrawReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){//출금요청

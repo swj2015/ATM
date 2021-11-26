@@ -54,7 +54,6 @@ public class ATM {
         Admin ad = new Admin(admin);
         User us = new User(user);
         Account ac = new Account(acc);
-        Transaction trans = new Transaction();
         Scanner s = new Scanner(System.in);
 
         int newcheonWon = 0;
@@ -166,7 +165,11 @@ public class ATM {
                                 System.out.println("--- System : 로그아웃 성공 ---");
                                 break;
                             case 5:
-                                ac.transLogSearch();
+                                ArrayList<Transaction_Log> Log;
+                                Log = ac.transLogSearch();
+                                for (int i = 0; i< Log.size(); i++){
+                                    			System.out.printf("계좌 : %s,사용자 이름 : %s, 거래 시간 : %s, 거래 종류 : %s, 입금 금액 : %d, 만원 장수 : %d, 5만원 장수 : %d, 천원 장수 : %d, 오천원 장수 : %d, 계좌 잔액 : %d \n", Log.get(i).getTransAcc(), Log.get(i).getReqUserName(), Log.get(i).getTransDate(), Log.get(i).getTransType(), Log.get(i).getTransTotal(), Log.get(i).getTransManWon(), Log.get(i).getTrans5ManWon(), Log.get(i).getTransCheonWon(), Log.get(i).getTrans5CheonWon(), Log.get(i).getAccBal());
+                                }
                                 break;
                         }
                     }
