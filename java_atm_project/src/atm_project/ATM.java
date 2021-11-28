@@ -291,8 +291,12 @@ public class ATM {
                                 ac.remitReq(sendAccNum, sendAccPWD, sentAccNum, total);
                                 break;
                             case 4:
+                                ArrayList<AccountInfo> info;
                                 System.out.print("계좌 조회를 시작합니다.\n");
-                                ac.depositSearch(user.get(num2).getUserName());                        //처음 입력받은 고객이름에 해당하는 계좌 조회
+                                info = ac.depositSearch(user.get(num2).getUserName());
+                                for (int i = 0; i< info.size(); i++) {
+                                    System.out.printf("%s, %s, %d, %d, %d \n", acc.get(i).getAccUser(), acc.get(i).getAccNum(), acc.get(i).getAccBal(), acc.get(i).getAccType(), acc.get(i).getAccPWD());
+                                }
                                 break;
                             case 5:
                                 System.out.println("--- System : 로그아웃 성공 ---");

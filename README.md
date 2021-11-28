@@ -41,3 +41,5 @@ Transaction Log 에 시간 추가
 접근제한자 수정경
 21.11.26. 16:26
 transaction Log를 ATM에서 print해주게 변경
+21.11.28. 22:38
+deposit search를 ATM에서 print해주게 변경
