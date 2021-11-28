@@ -76,6 +76,12 @@ public class ATM extends JFrame { //
 	private static int sendAccPWD;
 	private static String sentAccNum;
 	
+	private static int och;
+	private static int fch;
+	private static int om;
+	private static int fm;
+	
+	
 	void billAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
 		leftManWon += manWon;
 		left5ManWon += ohManWon;
@@ -145,8 +151,8 @@ public class ATM extends JFrame { //
     	Loginlabel.setBounds(150, 20, 200, 30);
     	adLogin.setBounds(40,50,200,30);	// x,y,가로,세로
     	userLogin.setBounds(40,80,200,30);
-    	idlabel.setBounds(70, 130, 60, 30);
-    	pwlabel.setBounds(30, 170, 70, 30);
+    	idlabel.setBounds(62, 130, 60, 30);
+    	pwlabel.setBounds(20, 170, 90, 30);
     	
     	LoginId.setBounds(110, 130, 200, 30);
     	LoginPw.setBounds(110,170, 200, 30);
@@ -247,22 +253,7 @@ public class ATM extends JFrame { //
     	adF2.add(out1c); adF2.add(out5c); adF2.add(out1m); adF2.add(out5m);
     	adF2.add(ad2_ok);
     	
-    	
-    	// 3번 잔여지폐 확인
-    	JLabel ad31 = new JLabel("ATM기 안에 남은 천원권 장 수는 : " + atm.leftCheonWon);
-    	JLabel ad32 = new JLabel("ATM기 안에 남은 오천원권 장 수는 : " + atm.left5CheonWon);
-    	JLabel ad33 = new JLabel("ATM기 안에 남은 만원권 장 수는 : " + atm.leftManWon);
-    	JLabel ad34 = new JLabel("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
-    	
-    	ad31.setBounds(50, 50, 300, 30);
-    	ad32.setBounds(50, 80, 300, 30);
-    	ad33.setBounds(50, 110, 300, 30);
-    	ad34.setBounds(50, 140, 300, 30);
-    	ad3_ok.setBounds(260, 310, 100, 30);
-    	
-    	adF3.add(ad31); adF3.add(ad32); adF3.add(ad33); adF3.add(ad34);
-    	adF3.add(ad3_ok);
-    	
+
     	
     	// 4번 트랜젝션 로그 조회
     	// Account 클래스 수정해야함 -> ac.transLogSearch();
@@ -285,6 +276,16 @@ public class ATM extends JFrame { //
 		 		
 				atm.billAdd(newcheonWon,newohCheonWon,newmanWon,newohManWon);
 				
+				och = atm.leftCheonWon;
+		    	fch = atm.left5CheonWon;
+		    	om = atm.leftManWon;
+		    	fm = atm.left5ManWon;
+				
+		    	System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atm.leftCheonWon);
+				System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atm.left5CheonWon);
+				System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atm.leftManWon);
+				System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
+		    	
 				JOptionPane.showMessageDialog(null, "지폐가 정상적으로 충전되었습니다!");
 				adF1.dispose();
 				adFr.setVisible(true);
@@ -328,12 +329,15 @@ public class ATM extends JFrame { //
 					
 					JOptionPane.showMessageDialog(null, "지폐가 정상적으로 인출되었습니다!");
 					
+					
 					adF2.dispose();
 					adFr.setVisible(true);
+					
 				}
 				
 			}
  		});
+    	
     	
     	
     	ad3_ok.addActionListener(new ActionListener() {
@@ -545,6 +549,8 @@ public class ATM extends JFrame { //
 			}
  		});
     	
+    	
+    	
     	user2_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 출금
@@ -719,6 +725,26 @@ public class ATM extends JFrame { //
 		 		ad3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						n = 3;
+						
+						och = atm.leftCheonWon;
+				    	fch = atm.left5CheonWon;
+				    	om = atm.leftManWon;
+				    	fm = atm.left5ManWon;
+						
+				    	JLabel ad31 = new JLabel("ATM기 안에 남은 천원권 장 수는 : " + och);
+				    	JLabel ad32 = new JLabel("ATM기 안에 남은 오천원권 장 수는 : " + fch);
+				    	JLabel ad33 = new JLabel("ATM기 안에 남은 만원권 장 수는 : " + om);
+				    	JLabel ad34 = new JLabel("ATM기 안에 남은 오만원권 장 수는 : " + fm);
+				    	
+				    	ad31.setBounds(50, 50, 300, 30);
+				    	ad32.setBounds(50, 80, 300, 30);
+				    	ad33.setBounds(50, 110, 300, 30);
+				    	ad34.setBounds(50, 140, 300, 30);
+				    	ad3_ok.setBounds(260, 310, 100, 30);
+				    	
+				    	adF3.add(ad31); adF3.add(ad32); adF3.add(ad33); adF3.add(ad34);
+				    	adF3.add(ad3_ok);
+				    	
 						adFr.dispose();
 						adF3.setVisible(true);
 					}
