@@ -843,9 +843,9 @@ public class ATM extends JFrame {
 				        	JLabel ad36 = new JLabel("계좌 : " + st1 + ", 사용자 이름 : "+ st2 + ", 거래시간 : "+ st3 + ", 거래종류 : " + st4);
 				        	JLabel ad37 = new JLabel("입금금액 : " + in1 + ", 만원권 : "+ in2 + ", 오만원권 : "+ in3 + " , 천원권 : " + in4 + " , 계좌잔액 : " + in5);
 
-				        	ad36.setBounds(50, 80+i*30, 1000, 30);
+				        	ad36.setBounds(50, 70+i*35, 1000, 30);
 				        	adF4.add(ad36);
-				        	ad37.setBounds(50, 100+i*30, 1000, 30);
+				        	ad37.setBounds(50, 90+i*35, 1000, 30);
 				        	adF4.add(ad37);
 				        	
 				    	}
