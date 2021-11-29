@@ -1,81 +1,117 @@
 package atm_project;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-public class Account {
+class Account {
 
-	Transaction transaction;
-	ATMInfo atmInfo;
-	protected List<Account> acc;
-	protected List<Transaction> trans;
+	Date date = new Date();
+	Transaction transaction = new Transaction();
+	ArrayList<AccountInfo> acc;
 
-	protected String accUser;       //계좌소유유저이름
-	protected String accNum;		//계좌번호
-	protected int accBal;			//계좌잔액
-	protected int accType;			//계좌종류 => 1.입출금, 2.정기예금, 3.정기적금
-	protected int accPWD;			//계좌 비밀번호
-
-	protected String getAccUser() { return accUser; }
-	protected String getAccNum() { return  accNum; }
-	protected int getAccBal() { return accBal; }
-	protected int getAccType() { return  accType; }
-	protected int getAccPWD() { return accPWD; }
-	protected void setAccBal(int accBal) { this.accBal = accBal; }
-
-	protected Account(String accUser, String accNum, int accBal, int accType, int accPWD){
-		this.accUser = accUser;
-		this.accNum = accNum;
-		this.accBal = accBal;
-		this.accType = accType;
-		this.accPWD = accPWD;
+	Account(ArrayList<AccountInfo> acc) {
+		this.acc = acc;
 	}
-	
-	
-	protected void depositReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){ //입금요청
+
+	protected int depositReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){ //입금요청
 		for (int i=0 ; i<acc.size(); i++){
-			if (accNum == acc.get(i).getAccNum() && accPWD == acc.get(i).getAccPWD()){
-				transaction.accBalAddReq(accNum, total);
+			if (accNum.equals(acc.get(i).getAccNum()) && acc.get(i).getAccType() != 1){
+				return 2003;
 			}
-			transaction.transLogReq(accNum, acc.get(i).getAccUser(), -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+			if (accNum.equals(acc.get(i).getAccNum()) && accPWD == acc.get(i).getAccPWD()){
+				for(int j=0; j<acc.size() ; j++){
+					if(acc.get(j).getAccNum().equals(accNum)){
+						acc.get(j).setAccBal(acc.get(j).getAccBal() + total);
+					}
+				}
+				transaction.transLogReq(accNum, acc.get(i).getAccUser(), date.toString(), "입금", total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+				//System.out.println("입금이 정상적으로 실행되었습니다!");
+				//System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
+				return 1000;
+			}
 		}
-		transaction.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
+		return 2000;
+	}
+
+	protected ArrayList transLogSearch(){
+		return transaction.transLogPrint();
 	}
 	
 	protected int withdrawReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){//출금요청
 		for (int i=0 ; i<acc.size(); i++) {
-			if (accNum == acc.get(i).getAccNum() && accPWD == acc.get(i).getAccPWD()){
-				if (acc.get(i).getAccBal() < total){
-					System.out.println ("계좌의 잔액이 부족합니다!");
+			if (accNum.equals(acc.get(i).getAccNum()) && accPWD == acc.get(i).getAccPWD()) {
+				if (accNum.equals(acc.get(i).getAccNum()) && acc.get(i).getAccType() != 1){
+					return 2003;
+				}
+				if (acc.get(i).getAccBal() < total) {
 					return 2001;
 				}
-				if(atmInfo.leftCheonWon < cheonWon || atmInfo.left5CheonWon < ohCheonWon || atmInfo.leftManWon < manWon || atmInfo.left5ManWon < ohManWon){
-					System.out.println("ATM기 내의 지폐가 부족합니다!");
-					return 2002;
+				for(int j=0; j<acc.size() ; j++){
+					if(acc.get(j).getAccNum().equals(accNum)){
+						acc.get(j).setAccBal(acc.get(j).getAccBal() - total);
+					}
 				}
-				transaction.accBalSubReq(accNum, total);
-				break;
+				transaction.transLogReq(accNum, acc.get(i).getAccUser(), date.toString(), "출금", -total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
+				//System.out.println("출금이 정상적으로 실행되었습니다!");
+				//System.out.println("계좌에 남은 금액은 :" + acc.get(i).getAccBal() + "입니다!");
+				return 1000;
 			}
-			transaction.transLogReq(accNum, acc.get(i).getAccUser(), total, manWon, ohManWon, cheonWon, ohCheonWon, acc.get(i).getAccBal());
 		}
-		transaction.atmLeftSubReq(cheonWon, ohCheonWon, manWon, ohManWon);
-
-		return 1000;
+		return 2000;
 	}
 	
-	protected int remitReq(String sendAccNum, int sendAccPWD, String sentAccNum, int total){				//거래요청(타계좌간거래)
+	protected int remitReq(String sendAccNum, int sendAccPWD, String sentAccNum, int total){//거래요청(타계좌간거래)
+		int cnt = 0; int send = 0; int sent = 0;
 		for (int i=0 ; i<acc.size(); i++) {
-			if (sendAccNum == acc.get(i).getAccNum() && sendAccPWD == acc.get(i).getAccPWD()){
+			if (sentAccNum.equals(acc.get(i).getAccNum()) && acc.get(i).getAccType() != 1){
+				//System.out.println("입출금계좌로만 입금이 가능합니다!");
+				return 2003;
+			}
+			if (sendAccNum.equals(acc.get(i).getAccNum()) && sendAccPWD == acc.get(i).getAccPWD()){
 				if (acc.get(i).getAccBal() < total){
-					System.out.println ("계좌의 잔액이 부족합니다!");
 					return 2001;
 				}
-				transaction.accBalSubReq(sendAccNum, total);
+				if (acc.get(i).getAccType() != 1){
+					return 2002;
+				}
+				send = i;
+
+				cnt ++;
 			}
-			if (sentAccNum == acc.get(i).getAccNum()){
-				transaction.accBalAddReq(sentAccNum, total);
+			if (sentAccNum.equals(acc.get(i).getAccNum())){
+				cnt ++;
+				sent = i;
 			}
 		}
+		if (cnt == 2){
+			acc.get(send).setAccBal(acc.get(send).getAccBal() - total);
+			acc.get(sent).setAccBal(acc.get(sent).getAccBal() + total);
+			//System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(send).getAccUser(), date.toString(), "출금", -total, 0, 0, 0, 0, acc.get(send).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), date.toString(),"입금", -total, 0, 0, 0, 0, acc.get(sent).getAccBal());
+		}
+		if (cnt != 2){
+			return 2004;
+		}
 		return 1000;
+	}
+
+	protected ArrayList depositSearch(String userId){//유저 계좌 조회 -> 가지고 있는 전체 계좌를 보여줌. 로그인 한 상태이고 무조건 1개 이상의 계좌가 있다고 가정
+		ArrayList<AccountInfo> depositSearching = new ArrayList<>();
+		for (int j = 0; j < acc.size(); j++) {
+			if (userId.equals(acc.get(j).getAccUser())) {
+				if (acc.get(j).getAccType() == 1) {
+					AccountInfo depositSearchs = new AccountInfo(acc.get(j).getAccUser(), acc.get(j).getAccNum(), acc.get(j).getAccBal(), acc.get(j).getAccType(), acc.get(j).getAccPWD());
+					depositSearching.add(depositSearchs);
+				}
+				if (acc.get(j).getAccType() == 2) {
+					AccountInfo depositSearchs = new AccountInfo(acc.get(j).getAccUser(), acc.get(j).getAccNum(), acc.get(j).getAccBal(), acc.get(j).getAccType(), acc.get(j).getAccPWD());
+					depositSearching.add(depositSearchs);				}
+				if (acc.get(j).getAccType() == 3) {
+					AccountInfo depositSearchs = new AccountInfo(acc.get(j).getAccUser(), acc.get(j).getAccNum(), acc.get(j).getAccBal(), acc.get(j).getAccType(), acc.get(j).getAccPWD());
+					depositSearching.add(depositSearchs);				}
+			}
+		}
+		return depositSearching;
 	}
 }
