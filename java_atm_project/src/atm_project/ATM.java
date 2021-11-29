@@ -28,13 +28,16 @@ public class ATM extends JFrame {
 	private static int adPWD;
 	private static int n = 0; // 작업선택
 	private static int vali;
+	private static int vali2;
+	private static int cnt2 = 0; // 작업선택
+
 	//
 	private static JFrame atmFr = new JFrame("ATM");
 	private static JLabel Loginlabel = new JLabel("< ATM Login >");
 	private static JLabel idlabel = new JLabel("ID : ");
 	private static JLabel pwlabel = new JLabel("Password : ");
 	private static JTextField LoginId = new JTextField("");
-	private static JTextField LoginPw = new JTextField("");
+	private static JPasswordField LoginPw = new JPasswordField("");
 	private static JButton okay = new JButton("로그인");
     
 	//admin. 1 관리자 지폐 입금, 2 관리자 지폐 출금, 3 남은 지폐 확인, 4 Transaction Log 조회, 5 로그인 화면
@@ -83,6 +86,12 @@ public class ATM extends JFrame {
 	private static int fch;
 	private static int om;
 	private static int fm;
+	
+	
+	
+	
+	
+	
     
     void billAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon) {
         leftManWon += manWon;
@@ -142,6 +151,7 @@ public class ATM extends JFrame {
     	
     	JRadioButton adLogin = new JRadioButton("Admin Login");
     	JRadioButton userLogin = new JRadioButton("User Login");
+    	userLogin.setSelected(true);
     	ButtonGroup group = new ButtonGroup();
     	
     	atmFr.setLayout(null);
@@ -154,8 +164,8 @@ public class ATM extends JFrame {
     	group.add(userLogin);
     	
     	Loginlabel.setBounds(150, 20, 200, 30);
-    	adLogin.setBounds(40,50,200,30);	// x,y,가로,세로
-    	userLogin.setBounds(40,80,200,30);
+    	adLogin.setBounds(40,80,200,30);	// x,y,가로,세로
+    	userLogin.setBounds(40,50,200,30);
     	idlabel.setBounds(70, 130, 60, 30);
     	pwlabel.setBounds(30, 170, 70, 30);
     	
@@ -267,17 +277,18 @@ public class ATM extends JFrame {
     	// 4번 트랜젝션 로그 조회
     	// Account 클래스 수정해야함 -> ac.transLogSearch();
     	
-    	ArrayList<Transaction_Log> Log;
-        Log = ac.transLogSearch();
-        
+    	
     	JLabel ad35 = new JLabel("트랜젝션 로그 조회 : ");
     	ad35.setBounds(50, 20, 300, 30);
     	adF4.add(ad35);
-    	//System.out.println("안녕");
-    	//System.out.println("안녕");
-
+    	
+    	
+    	
+    	ArrayList<Transaction_Log> Log;
+        Log = ac.transLogSearch();
+    	
 		for (int i = 0; i< Log.size(); i++){
-
+			
     		String st1 = Log.get(i).getTransAcc();	//계좌
         	String st2 = Log.get(i).getReqUserName();	//사용자 이름
         	String st3 = Log.get(i).getTransDate();		//거래시간
@@ -289,23 +300,16 @@ public class ATM extends JFrame {
         	int in5 = Log.get(i).getTrans5CheonWon();
         	int in6 = Log.get(i).getAccBal();
         	JLabel ad36 = new JLabel("계좌 : " + st1 + ", 사용자 이름 : "+ st2 + ", 거래시간 : "+ st3 + ", 거래종류 : " + st4);
-        	ad36.setBounds(50, 80, 300, 30);
-        	
+        	JLabel ad37 = new JLabel("입금금액 : " + in1 + ", 만원권 : "+ in2 + ", 오만원권 : "+ in3 + " , 천원권 : " + in4 + " , 계좌잔액 : " + in5);
+
+        	ad36.setBounds(50, 80+i*30, 300, 30);
         	adF4.add(ad36);
-        	
-        	JLabel ad37 = new JLabel("트랜젝션 로그 조회 : ");
-        	ad37.setBounds(50, 90, 300, 30);
+        	ad37.setBounds(50, 100+i*30, 300, 30);
         	adF4.add(ad37);
+        	
     	}
     	
-    	
-    	
-    	
-        
-    	
     	ad4_ok.setBounds(260, 310, 100, 30);
-    	
-    	
     	adF4.add(ad4_ok);
     	
  
@@ -400,6 +404,8 @@ public class ATM extends JFrame {
 				// Account 클래스에서
 				//ac.transLogSearch();
 		    	
+				
+				
 				adF4.dispose();
 		    	adFr.setVisible(true);
 				
@@ -452,7 +458,7 @@ public class ATM extends JFrame {
     	JLabel user17 = new JLabel("입금하실 오만원권 매수를 입력해주세요.");
     	
     	JTextField ua11 = new JTextField();
-    	JTextField ua12 = new JTextField();
+    	JPasswordField ua12 = new JPasswordField();
     	JTextField ua13 = new JTextField();
     	JTextField ua1c = new JTextField();
     	JTextField ua5c = new JTextField();
@@ -492,7 +498,7 @@ public class ATM extends JFrame {
     	JLabel user27 = new JLabel("출금하실 오만원권 매수를 입력해주세요.");
     	
     	JTextField uo21 = new JTextField();
-    	JTextField uo22 = new JTextField();
+    	JPasswordField uo22 = new JPasswordField();
     	JTextField uo23 = new JTextField();
     	JTextField uo1c = new JTextField();
     	JTextField uo5c = new JTextField();
@@ -530,10 +536,12 @@ public class ATM extends JFrame {
     	JLabel user34 = new JLabel("총 금액을 입력하세요.");
     	
     	JTextField us31 = new JTextField();
-    	JTextField us32 = new JTextField();
+    	JPasswordField us32 = new JPasswordField();
     	JTextField us33 = new JTextField();
     	JTextField us34 = new JTextField();
     	
+    	
+    
     	user31.setBounds(50, 20, 300, 30);
     	us31.setBounds(50, 50, 200, 30);
     	user32.setBounds(50, 90, 300, 30);
@@ -686,8 +694,44 @@ public class ATM extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// 송금
 				
+				String sendaccnum  = us31.getText();
+				String sendaccpwd  = us32.getText();
+				String sentaccnum = us33.getText();
+				String total1 = us34.getText();
+				sendAccNum = sendaccnum;
+				sendAccPWD = Integer.parseInt(sendaccpwd);
+				sentAccNum = sentaccnum;
+				total = Integer.parseInt(total1);
+				
+				//int cnt2 = 0;
+				int vail2 = ac.remitReq(sendAccNum, sendAccPWD, sentAccNum, total);
+		    	
+				
+				for(int i=0 ; i<acc.size(); i++) {
+					if(vail2 == 2003) {
+						JOptionPane.showConfirmDialog(null, "입출금계좌로만 입금이 가능합니다!", "송금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						cnt2++;
+					}
+					if(vail2 == 2001) {
+						JOptionPane.showConfirmDialog(null, "계좌의 잔액이 부족합니다!", "송금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						cnt2++;
+					}
+					if(vail2 == 2002) {
+						JOptionPane.showConfirmDialog(null, "입출금계좌만 계좌간 거래가 가능합니다", "송금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						cnt2++;
+					}
+				}
+				
+				if(vail2 == 2004) {
+					JOptionPane.showConfirmDialog(null, "송금 거래 정보가 맞지 않습니다", "송금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				}else
+					JOptionPane.showConfirmDialog(null, "송금에 성공하였습니다!", "송금 성공(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
 				
 				
+				
+				
+		    	
 				
 				userF3.dispose();
 		    	userFr.setVisible(true);
