@@ -81,15 +81,12 @@ public class User {
 			
 			if (userId.equals(Id)) {
 				if(userPWD == uPWD(i)){
-					System.out.printf("%s 회원님이 로그인에 성공했습니다!\n", name);
 					return 1000;
 				}
 				else continue;
 				
 			}
 		}
-		
-		System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
 				
 		return 2000;
 	} //1000 : 성공 2000 : 오류
@@ -100,13 +97,13 @@ public class User {
 				for(int j=0 ; j<acc.size() ; j++){
 					if(user.get(i).getUserName() == acc.get(j).getAccUser()){
 						if(acc.get(j).getAccType() == 1) {
-							System.out.printf("유저의 %c 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+							//System.out.printf("유저의 %c 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
 						}
 						if(acc.get(j).getAccType() == 2) {
-							System.out.printf("유저의 %c 정기예금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+							//System.out.printf("유저의 %c 정기예금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
 						}
 						if(acc.get(j).getAccType() == 3) {
-							System.out.printf("유저의 %c 정기적금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
+							//System.out.printf("유저의 %c 정기적금 계좌의 잔액은 %d원 입니다! \n", acc.get(j).getAccNum(), acc.get(j).getAccBal());
 						}
 					}
 				}
