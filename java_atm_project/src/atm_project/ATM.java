@@ -109,9 +109,6 @@ public class ATM extends JFrame {
         ArrayList<AccountInfo> acc = new ArrayList<>();
     	
         
-        
-        
-        
         Admin ad = new Admin(admin);
         User us = new User(user);
         Account ac = new Account(acc);
@@ -149,9 +146,16 @@ public class ATM extends JFrame {
                 
     	// GUI
     	
-    	JRadioButton adLogin = new JRadioButton("Admin Login");
     	JRadioButton userLogin = new JRadioButton("User Login");
-    	userLogin.setSelected(true);
+    	JRadioButton adLogin = new JRadioButton("Admin Login");
+
+    	
+    	boolean bl = true;
+    	if(bl==true) {
+    		userLogin.setSelected(true);
+    		a=2;
+    	}
+    	
     	ButtonGroup group = new ButtonGroup();
     	
     	atmFr.setLayout(null);
@@ -210,7 +214,7 @@ public class ATM extends JFrame {
     	adF1.setSize(400,400); adF1.setLocationRelativeTo(null);
     	adF2.setSize(400,400); adF2.setLocationRelativeTo(null);
     	adF3.setSize(400,400); adF3.setLocationRelativeTo(null);
-    	adF4.setSize(400,400); adF4.setLocationRelativeTo(null);
+    	adF4.setSize(800,400); adF4.setLocationRelativeTo(null);
     	
     	JButton ad1_ok = new JButton("완료");
     	JButton ad2_ok = new JButton("완료");
@@ -270,49 +274,17 @@ public class ATM extends JFrame {
     	adF2.add(ad2_ok);   	
     	
     	
-    	
-    	
-    	
-    	
-    	// 4번 트랜젝션 로그 조회
-    	// Account 클래스 수정해야함 -> ac.transLogSearch();
-    	
+
+
     	
     	JLabel ad35 = new JLabel("트랜젝션 로그 조회 : ");
     	ad35.setBounds(50, 20, 300, 30);
     	adF4.add(ad35);
     	
-    	
-    	
-    	ArrayList<Transaction_Log> Log;
-        Log = ac.transLogSearch();
-    	
-		for (int i = 0; i< Log.size(); i++){
-			
-    		String st1 = Log.get(i).getTransAcc();	//계좌
-        	String st2 = Log.get(i).getReqUserName();	//사용자 이름
-        	String st3 = Log.get(i).getTransDate();		//거래시간
-        	String st4 = Log.get(i).getTransType();	//거래종류
-        	int in1 = Log.get(i).getTransTotal();	//입금금액
-        	int in2 = Log.get(i).getTransManWon();
-        	int in3 = Log.get(i).getTrans5ManWon();
-        	int in4 = Log.get(i).getTransCheonWon();
-        	int in5 = Log.get(i).getTrans5CheonWon();
-        	int in6 = Log.get(i).getAccBal();
-        	JLabel ad36 = new JLabel("계좌 : " + st1 + ", 사용자 이름 : "+ st2 + ", 거래시간 : "+ st3 + ", 거래종류 : " + st4);
-        	JLabel ad37 = new JLabel("입금금액 : " + in1 + ", 만원권 : "+ in2 + ", 오만원권 : "+ in3 + " , 천원권 : " + in4 + " , 계좌잔액 : " + in5);
-
-        	ad36.setBounds(50, 80+i*30, 300, 30);
-        	adF4.add(ad36);
-        	ad37.setBounds(50, 100+i*30, 300, 30);
-        	adF4.add(ad37);
-        	
-    	}
-    	
-    	ad4_ok.setBounds(260, 310, 100, 30);
+    	ad4_ok.setBounds(340, 310, 100, 30);
     	adF4.add(ad4_ok);
     	
- 
+    	
     	
     	
     	// admin 작업완료 버튼
@@ -328,13 +300,19 @@ public class ATM extends JFrame {
 		 		String new5m = add5m.getText();
 		 		newohManWon = Integer.parseInt(new5m);
 		 		
-				atm.billAdd(newcheonWon,newohCheonWon,newmanWon,newohManWon);
+		 		atm.billAdd(newcheonWon,newohCheonWon,newmanWon,newohManWon);
 				
 				och = atm.leftCheonWon;
 		    	fch = atm.left5CheonWon;
 		    	om = atm.leftManWon;
 		    	fm = atm.left5ManWon;
 				
+		    	add1c.setText(null);
+		    	add5c.setText(null);
+		    	add1m.setText(null);
+		    	add5m.setText(null);
+		    	
+		    	
 				JOptionPane.showMessageDialog(null, "지폐가 정상적으로 충전되었습니다!");
 				adF1.dispose();
 				adFr.setVisible(true);
@@ -355,6 +333,11 @@ public class ATM extends JFrame {
 		 		String new5m = out5m.getText();
 		 		newohManWon = Integer.parseInt(new5m);
 				
+		 		
+		 		out1c.setText(null);
+		 		out5c.setText(null);
+		 		out1m.setText(null);
+		 		out5m.setText(null);		 		
 				
 				if(atm.leftCheonWon < newcheonWon) {
 					JOptionPane.showConfirmDialog(null, "천원권의 매수가 부족합니다.", "인출 실패(Admin)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -371,10 +354,6 @@ public class ATM extends JFrame {
 				else {
 					atm.billAdd(-newcheonWon,-newohCheonWon,-newmanWon,-newohManWon);
 	
-					System.out.println("ATM기 안에 남은 천원권 장 수는 : " + atm.leftCheonWon);
-					System.out.println("ATM기 안에 남은 오천원권 장 수는 : " + atm.left5CheonWon);
-					System.out.println("ATM기 안에 남은 만원권 장 수는 : " + atm.leftManWon);
-					System.out.println("ATM기 안에 남은 오만원권 장 수는 : " + atm.left5ManWon);
 					
 					JOptionPane.showMessageDialog(null, "지폐가 정상적으로 인출되었습니다!");
 					
@@ -389,20 +368,17 @@ public class ATM extends JFrame {
     	
     	ad3_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
 				adF3.dispose();
 		    	adFr.setVisible(true);
 			}
  		});
     	
+    	
+    	
+    	
     	ad4_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Account 클래스에서
-				//ac.transLogSearch();
-		    	
-				
-				
+
 				adF4.dispose();
 		    	adFr.setVisible(true);
 				
@@ -555,9 +531,7 @@ public class ATM extends JFrame {
     	
     	
     	
-    	
     	// 작업완료 버튼
-    	
     	
     	user1_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -593,11 +567,18 @@ public class ATM extends JFrame {
 		 		else {
 					JOptionPane.showConfirmDialog(null, "입금하시는 총 금액과 지폐 금액의 총합이 같아야 합니다.", "입금 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				}
+		 		ua11.setText(null);
+		 		ua12.setText(null);
+		 		ua13.setText(null);
+		 		ua1c.setText(null);
+		 		ua5c.setText(null);
+		 		ua1m.setText(null);
+		 		ua5m.setText(null);
 		 		
 		 		// 작업선택화면으로
 		 		
 			}
- 		});    	
+ 		});    		
     	
     	user2_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -617,6 +598,15 @@ public class ATM extends JFrame {
 		 		String new5m = uo5m.getText();
 		 		newohManWon = Integer.parseInt(new5m);
 				
+		 		uo21.setText(null);
+		 		uo22.setText(null);
+		 		uo23.setText(null);
+		 		uo1c.setText(null);
+		 		uo5c.setText(null);
+		 		uo1m.setText(null);
+		 		uo5m.setText(null);
+		 		
+		 		
 		 		int a=0;
 		 		
 				if ((1000 * newcheonWon + 5000 * newohCheonWon + 10000 * newmanWon + 50000 * newohManWon) == total){
@@ -682,6 +672,12 @@ public class ATM extends JFrame {
 				sentAccNum = sentaccnum;
 				total = Integer.parseInt(total1);
 				
+				us31.setText(null);
+				us32.setText(null);
+				us33.setText(null);
+				us34.setText(null);
+				
+				
 				//int cnt2 = 0;
 				int vail2 = ac.remitReq(sendAccNum, sendAccPWD, sentAccNum, total);
 		    	
@@ -712,7 +708,19 @@ public class ATM extends JFrame {
 				
 			}
  		});
-    	
+				
+				
+    	user4_ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// 계좌조회
+				
+				
+				//
+				userF4.dispose();
+		    	userFr.setVisible(true);
+				
+			}
+ 		});
     	
     	
     	
@@ -721,7 +729,6 @@ public class ATM extends JFrame {
     	///////////////////////////////////////////////
         Scanner s = new Scanner(System.in);
 		
-		System.out.println("--- System : ATM 프로그램을 실행합니다. ---");
 			
 			
 			
@@ -730,11 +737,10 @@ public class ATM extends JFrame {
 					a = 1;
 				}
 			});
-			
+				
 			userLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					a = 2;
-					System.out.println(a);
 				}
 			});
 			
@@ -747,14 +753,10 @@ public class ATM extends JFrame {
 		 			adPWD = Integer.parseInt(is_PWD);
 					
 					
-		 			System.out.println(a);
-		 			System.out.println(is_id);
-		 			System.out.println(adPWD);
 			
 		 		if(a == 1) {
 					
 					num = ad.adminIdentification(is_id, adPWD);		// 관리자 로그인 성공 실패 메소드
-					System.out.println(num);
 						
 					    if(num == 1000) {
 					    	atmFr.dispose();
@@ -775,18 +777,17 @@ public class ATM extends JFrame {
 		 		});
 		 		ad2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
 						n = 2;
 						adFr.dispose();
 						adF2.setVisible(true);
 					}
 		 		});
 		 		
+		 		
 		 		JLabel ad31 = new JLabel();
 		 		JLabel ad32 = new JLabel();
 		 		JLabel ad33 = new JLabel();
 		 		JLabel ad34 = new JLabel();
-		 		
 		 		
 		 		ad3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -815,10 +816,39 @@ public class ATM extends JFrame {
 						adF3.setVisible(true);
 					}
 		 		});
+		 		
+		 		
+		 		
+		 		
 		 		ad4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						n = 4;
 						
+						ArrayList<Transaction_Log> Log;
+				        Log = ac.transLogSearch();
+				        
+				        
+						for (int i = 0; i< Log.size(); i++){
+							
+				    		String st1 = Log.get(i).getTransAcc();	//계좌
+				        	String st2 = Log.get(i).getReqUserName();	//사용자 이름
+				        	String st3 = Log.get(i).getTransDate();		//거래시간
+				        	String st4 = Log.get(i).getTransType();	//거래종류
+				        	int in1 = Log.get(i).getTransTotal();	//입금금액
+				        	int in2 = Log.get(i).getTransManWon();
+				        	int in3 = Log.get(i).getTrans5ManWon();
+				        	int in4 = Log.get(i).getTransCheonWon();
+				        	int in5 = Log.get(i).getTrans5CheonWon();
+				        	int in6 = Log.get(i).getAccBal();
+				        	JLabel ad36 = new JLabel("계좌 : " + st1 + ", 사용자 이름 : "+ st2 + ", 거래시간 : "+ st3 + ", 거래종류 : " + st4);
+				        	JLabel ad37 = new JLabel("입금금액 : " + in1 + ", 만원권 : "+ in2 + ", 오만원권 : "+ in3 + " , 천원권 : " + in4 + " , 계좌잔액 : " + in5);
+
+				        	ad36.setBounds(50, 80+i*30, 1000, 30);
+				        	adF4.add(ad36);
+				        	ad37.setBounds(50, 100+i*30, 1000, 30);
+				        	adF4.add(ad37);
+				        	
+				    	}
 						
 						
 						
@@ -837,23 +867,21 @@ public class ATM extends JFrame {
 					}
 		 		});
 		 		
-		 		
+
 //				case 2:		
 			//유저로 로그인
 				
 				if(a == 2) {
 					num = us.userIdentification(is_id, adPWD);
-					System.out.println(num);
 					
 					if(is_id.equals("test1")) {
 						num2 = 0;
 					}else if(is_id.equals("test2")) {
 						num2 = 1;
-					}else {
+					}else if(is_id.equals("test3")){
 						num2 = 2;
 					}
 					if(num == 1000){
-						System.out.println("> 1을 누르면 입금, 2을 누르면 출금, 3을 누르면 계좌간 거래, 4를 계좌조회, 5를 누르면 로그인 화면으로 돌아갑니다.");
 						atmFr.dispose();
 						userFr.setVisible(true);
 					}
@@ -862,23 +890,9 @@ public class ATM extends JFrame {
 						JOptionPane.showConfirmDialog(null, "아이디나 비밀번호가 일치하지 않습니다.", "로그인 실패(User)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 					}
 					
-				}
 					//계좌조회
-					if(num2==0) {
-						ArrayList<AccountInfo> info;
-				        info = ac.depositSearch(user.get(num2).getUserName());
-			        	
-			            
-					}
-					if(num2==1) {
-						ArrayList<AccountInfo> info;
-				        info = ac.depositSearch(user.get(1).getUserName());
-						
-					}
-					if(num2==2) {
-						ArrayList<AccountInfo> info;
-				        info = ac.depositSearch(user.get(2).getUserName());
-					}
+					ArrayList<AccountInfo> info;
+				    info = ac.depositSearch(user.get(num2).getUserName());
 					
 					
 					
@@ -904,18 +918,18 @@ public class ATM extends JFrame {
 						userF3.setVisible(true);
 					}
 		 		});
-		 		
+					
 		 		JLabel user37 = new JLabel();
 		 		JLabel user38 = new JLabel();
-		 		JLabel user39 = new JLabel();
-		 		
+		 		JLabel user39 = new JLabel();	
+//					
+				
 		 		user4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
 						if(num2 == 0) {
 							
-							
-							String str = acc.get(num2).getAccUser();
+							String str = user.get(num2).getUserName();
 					 		user37.setText("계좌 조회 결과 : " + str + "님");
 							user37.setBounds(50, 50, 300, 30);
 				        	
@@ -929,8 +943,6 @@ public class ATM extends JFrame {
 				            }
 				            user39.setText("통장종류 : " + int3 + "	 	=> 		" + str5);
 				            
-				            
-				            
 				            userF4.add(user37);
 				            user38.setBounds(50, 80, 300, 30);
 					        user39.setBounds(50, 110, 300, 30);
@@ -943,9 +955,11 @@ public class ATM extends JFrame {
 						}
 						
 						if(num2 ==1) {
-							String str = acc.get(num2).getAccUser();
+					 		
+							String str = user.get(num2).getUserName();
 					 		user37.setText("계좌 조회 결과 : " + str + "님");
 							user37.setBounds(50, 50, 300, 30);
+					        userF4.add(user37);
 					        
 					        for(int i=1; i<3; i++) {
 					        	String str1 = acc.get(i).getAccNum();
@@ -964,26 +978,26 @@ public class ATM extends JFrame {
 					            user38.setBounds(50, 80+(i-1)*60, 300, 30);
 						        user39.setBounds(50, 110+(i-1)*60, 300, 30);
 						        
-						        userF4.remove(user37);
-								userF4.remove(user38);
-								userF4.remove(user39);
 						        
-						        userF4.add(user37);
 						        userF4.add(user38);
 						        userF4.add(user39);
 						        
-						        user4_ok.setBounds(260, 310, 100, 30);
-							    userF4.add(user4_ok);
+						       
 					        }
-							
+							 user4_ok.setBounds(260, 310, 100, 30);
+							 userF4.add(user4_ok);
 						}
 						
 						if(num2 == 2) {
-							String str = acc.get(num2).getAccUser();
+							
+							String str = user.get(num2).getUserName();
 					 		user37.setText("계좌 조회 결과 : " + str + "님");
 							user37.setBounds(50, 50, 300, 30);
 					        userF4.add(user37);
+					        user37.setBounds(50, 50, 300, 30);
+					        
 					        for(int i=3; i<6; i++) {
+					        	System.out.println(i);
 					        	String str1 = acc.get(i).getAccNum();
 					            int int2 = acc.get(i).getAccBal();
 					            int int3 = acc.get(i).getAccType();
@@ -998,11 +1012,7 @@ public class ATM extends JFrame {
 					            }
 					            user39.setText("통장종류 : " + int3 + "	 	=> 		" + str5);
 					            
-					            userF4.remove(user37);
-								userF4.remove(user38);
-								userF4.remove(user39);
 					            
-					            user37.setBounds(50, 50, 300, 30);
 					            user38.setBounds(50, 80+(i-3)*60, 300, 30);
 						        user39.setBounds(50, 110+(i-3)*60, 300, 30);
 						        userF4.add(user38);
@@ -1010,11 +1020,13 @@ public class ATM extends JFrame {
 						        
 						        
 					        }
+					        user4_ok.setBounds(260, 310, 100, 30);
+						    userF4.add(user4_ok);
+					        
 				        }
 					
 						
-						user4_ok.setBounds(260, 310, 100, 30);
-						userF4.add(user4_ok);
+						
 						
 						n = 4;
 						userFr.dispose();
@@ -1044,11 +1056,11 @@ public class ATM extends JFrame {
 				    	
 					}
 		 		});
+		 		
+		 		
 				}
-			});
+			}});
+			
     }
-
-}
-            
-            
+}        
             
