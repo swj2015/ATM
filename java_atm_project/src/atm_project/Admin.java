@@ -52,7 +52,7 @@ public class Admin {
 			
 			if (adminId.equals(Id)) {
 				if(adminPWD == getAdminPWD(i)){
-					System.out.printf("%s (이)가 로그인에 성공했습니다!\n", name);
+					//System.out.printf("%s (이)가 로그인에 성공했습니다!\n", name);
 					return 1000;
 				}
 				else continue;
@@ -60,7 +60,7 @@ public class Admin {
 			}
 		}
 		
-		System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
+		//System.out.println("존재하지 않는 아이디 혹은 비밀번호입니다!");
 				
 		return 2000;
 		
@@ -69,17 +69,14 @@ public class Admin {
 
 	protected int adminBillAdd(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
 		trans.atmLeftAddReq(cheonWon, ohCheonWon, manWon, ohManWon);
-		System.out.println("성공적으로 지폐를 보충했습니다!");
 		return 1000;
 	}//관리자 지폐 입금
 
 	protected int adminBillTake(int cheonWon, int ohCheonWon, int manWon, int ohManWon){
 		if(atmInfo.leftCheonWon < cheonWon || atmInfo.left5CheonWon < ohCheonWon || atmInfo.leftManWon < manWon || atmInfo.left5ManWon < ohManWon){
-			System.out.println("ATM기 내의 지폐가 부족합니다!");
 			return 2001;
 		}
 		trans.atmLeftSubReq(cheonWon, ohCheonWon, manWon, ohManWon);
-		System.out.println("성공적으로 지폐를 꺼냈습니다!");
 		return 1000;
 	}//관리자 지폐 출금
 
