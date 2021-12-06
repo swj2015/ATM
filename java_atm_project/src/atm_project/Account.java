@@ -39,7 +39,7 @@ class Account {
 		System.out.println("Transaction Log 조회!");
 		return transaction.transLogPrint();
 	}
-	
+
 	protected int withdrawReq(String accNum, int accPWD, int total, int cheonWon, int ohCheonWon, int manWon, int ohManWon){//출금요청
 		for (int i=0 ; i<acc.size(); i++) {
 			if (accNum.equals(acc.get(i).getAccNum()) && accPWD == acc.get(i).getAccPWD()) {
@@ -65,7 +65,7 @@ class Account {
 		System.out.println("계좌 정보가 일치하지 않습니다!");
 		return 2000;
 	}
-	
+
 	protected int remitReq(String sendAccNum, int sendAccPWD, String sentAccNum, int total){//거래요청(타계좌간거래)
 		int cnt = 0; int send = 0; int sent = 0;
 		for (int i=0 ; i<acc.size(); i++) {
@@ -96,7 +96,7 @@ class Account {
 			acc.get(sent).setAccBal(acc.get(sent).getAccBal() + total);
 			System.out.printf("%s 고객의 %s 입출금 계좌의 잔액은 %d원 입니다! \n", acc.get(send).getAccUser(), acc.get(send).getAccNum(), acc.get(send).getAccBal());
 			transaction.transLogReq(sendAccNum, acc.get(send).getAccUser(), date.toString(), "출금", -total, 0, 0, 0, 0, acc.get(send).getAccBal());
-			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), date.toString(),"입금", -total, 0, 0, 0, 0, acc.get(sent).getAccBal());
+			transaction.transLogReq(sendAccNum, acc.get(sent).getAccUser(), date.toString(),"입금", total, 0, 0, 0, 0, acc.get(sent).getAccBal());
 		}
 		if (cnt != 2){
 			System.out.println("입출금 거래 정보가 맞지 않습니다!");
