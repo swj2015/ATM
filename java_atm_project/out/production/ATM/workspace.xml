@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="61fc20a6-ec50-4c14-b55b-a376b14e9095" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/java_atm_project/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/ATM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/ATMInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/Account.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/AccountInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/AdminInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/Transaction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/Transaction_Log.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/atm_project/UserInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_atm_project/src/module-info.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="21b7BHJTZh3IEv48kyP5xjWiBBO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.14941025" />
+    <property name="settings.editor.selected.configurable" value="diff.external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ATM" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="atm_project.ATM" />
+      <module name="ATM" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/java_atm_project/src" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="61fc20a6-ec50-4c14-b55b-a376b14e9095" name="Changes" comment="" />
+      <created>1638197796486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638197796486</updated>
+      <workItem from="1638197799811" duration="985000" />
+      <workItem from="1638198803223" duration="229000" />
+      <workItem from="1638199041580" duration="5432000" />
+      <workItem from="1638795622703" duration="1420000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
